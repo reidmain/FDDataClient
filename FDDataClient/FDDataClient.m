@@ -112,15 +112,19 @@
 					id remoteObject = [object valueForKeyPath: remoteKeyPath];
 					id transformedObject = [self _transformObjectToLocalModels: remoteObject];
 					
-					@try
+					// If the transformed object is nil do not attempt to set it on the model because it could be erasing data that already exists.
+					if (transformedObject != nil)
 					{
-						[model setValue: transformedObject 
-							forKeyPath: localKeyPath];
-					}
-					// If the key path on the local model does not exist an exception will most likely be thrown. Catch this exeception and log it so that any incorrect mappings will not crash the application.
-					@catch (NSException *exception)
-					{
-						NSLog(@"%@", exception);
+						@try
+						{
+							[model setValue: transformedObject 
+								forKeyPath: localKeyPath];
+						}
+						// If the key path on the local model does not exist an exception will most likely be thrown. Catch this exeception and log it so that any incorrect mappings will not crash the application.
+						@catch (NSException *exception)
+						{
+							NSLog(@"%@", exception);
+						}
 					}
 				}];
 			
