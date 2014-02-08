@@ -1,0 +1,713 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		27C55C9E18A5B35600BA7800 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C55C9D18A5B35600BA7800 /* Foundation.framework */; };
+		27C55CA018A5B35600BA7800 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C55C9F18A5B35600BA7800 /* CoreGraphics.framework */; };
+		27C55CA218A5B35600BA7800 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C55CA118A5B35600BA7800 /* QuartzCore.framework */; };
+		27C55CA418A5B35600BA7800 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C55CA318A5B35600BA7800 /* UIKit.framework */; };
+		27C55CAA18A5B35600BA7800 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C55CA918A5B35600BA7800 /* main.m */; };
+		27C55CB018A5B35600BA7800 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C55CAF18A5B35600BA7800 /* AppDelegate.m */; };
+		27C55CB318A5B35600BA7800 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27C55CB218A5B35600BA7800 /* Images.xcassets */; };
+		27C55CB518A5B35600BA7800 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 27C55CB418A5B35600BA7800 /* InfoPlist.strings */; };
+		27C55CB718A5B35600BA7800 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 27C55CB618A5B35600BA7800 /* iTunesArtwork */; };
+		27C55CB918A5B35600BA7800 /* iTunesArtwork@2x in Resources */ = {isa = PBXBuildFile; fileRef = 27C55CB818A5B35600BA7800 /* iTunesArtwork@2x */; };
+		27C55CEB18A5B45500BA7800 /* libFDDataClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C55CE618A5B3E800BA7800 /* libFDDataClient.a */; };
+		27C55CF618A5B49F00BA7800 /* libFDRequestClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C55CF318A5B49500BA7800 /* libFDRequestClient.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		27C55CE518A5B3E800BA7800 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27C55CE018A5B3E800BA7800 /* FDDataClient Static Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27D82F5318A5B083004A9D05;
+			remoteInfo = FDDataClient;
+		};
+		27C55CE918A5B44F00BA7800 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27C55CE018A5B3E800BA7800 /* FDDataClient Static Library.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 27D82F5218A5B083004A9D05;
+			remoteInfo = FDDataClient;
+		};
+		27C55CF218A5B49500BA7800 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27C55CEE18A5B49500BA7800 /* FDRequestClient Static Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27AE0F3616AD966A001F5771;
+			remoteInfo = FDRequestClient;
+		};
+		27C55CF418A5B49B00BA7800 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27C55CEE18A5B49500BA7800 /* FDRequestClient Static Library.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 27AE0F3516AD966A001F5771;
+			remoteInfo = FDRequestClient;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		27C55C9A18A5B35600BA7800 /* FDDataClient iOS Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FDDataClient iOS Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		27C55C9D18A5B35600BA7800 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		27C55C9F18A5B35600BA7800 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		27C55CA118A5B35600BA7800 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		27C55CA318A5B35600BA7800 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		27C55CA718A5B35600BA7800 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		27C55CA818A5B35600BA7800 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
+		27C55CA918A5B35600BA7800 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		27C55CAB18A5B35600BA7800 /* Entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Entitlements.entitlements; sourceTree = "<group>"; };
+		27C55CAE18A5B35600BA7800 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		27C55CAF18A5B35600BA7800 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		27C55CB218A5B35600BA7800 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		27C55CB418A5B35600BA7800 /* InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
+		27C55CB618A5B35600BA7800 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
+		27C55CB818A5B35600BA7800 /* iTunesArtwork@2x */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iTunesArtwork@2x"; sourceTree = "<group>"; };
+		27C55CE018A5B3E800BA7800 /* FDDataClient Static Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "FDDataClient Static Library.xcodeproj"; path = "../../../Static Library Project/FDDataClient Static Library.xcodeproj"; sourceTree = "<group>"; };
+		27C55CEC18A5B46A00BA7800 /* libFDRequestClient.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libFDRequestClient.a; path = "../Vendors/FDRequestClient/Static Library Project/build/Debug-iphoneos/libFDRequestClient.a"; sourceTree = "<group>"; };
+		27C55CEE18A5B49500BA7800 /* FDRequestClient Static Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "FDRequestClient Static Library.xcodeproj"; path = "../../../Vendors/FDRequestClient/Static Library Project/FDRequestClient Static Library.xcodeproj"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		27C55C9718A5B35600BA7800 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27C55C9E18A5B35600BA7800 /* Foundation.framework in Frameworks */,
+				27C55CA018A5B35600BA7800 /* CoreGraphics.framework in Frameworks */,
+				27C55CA218A5B35600BA7800 /* QuartzCore.framework in Frameworks */,
+				27C55CA418A5B35600BA7800 /* UIKit.framework in Frameworks */,
+				27C55CF618A5B49F00BA7800 /* libFDRequestClient.a in Frameworks */,
+				27C55CEB18A5B45500BA7800 /* libFDDataClient.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		27C55C9118A5B35600BA7800 = {
+			isa = PBXGroup;
+			children = (
+				27C55CA518A5B35600BA7800 /* FDDataClient iOS Example */,
+				27C55CAC18A5B35600BA7800 /* Vendors */,
+				27C55C9C18A5B35600BA7800 /* Frameworks */,
+				27C55C9B18A5B35600BA7800 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		27C55C9B18A5B35600BA7800 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				27C55C9A18A5B35600BA7800 /* FDDataClient iOS Example.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		27C55C9C18A5B35600BA7800 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				27C55CEC18A5B46A00BA7800 /* libFDRequestClient.a */,
+				27C55C9D18A5B35600BA7800 /* Foundation.framework */,
+				27C55C9F18A5B35600BA7800 /* CoreGraphics.framework */,
+				27C55CA118A5B35600BA7800 /* QuartzCore.framework */,
+				27C55CA318A5B35600BA7800 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		27C55CA518A5B35600BA7800 /* FDDataClient iOS Example */ = {
+			isa = PBXGroup;
+			children = (
+				27C55CD118A5B35600BA7800 /* iPad */,
+				27C55CC918A5B35600BA7800 /* iPhone */,
+				27C55CAD18A5B35600BA7800 /* Shared */,
+				27C55CA618A5B35600BA7800 /* Supporting Files */,
+			);
+			path = "FDDataClient iOS Example";
+			sourceTree = "<group>";
+		};
+		27C55CA618A5B35600BA7800 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				27C55CA718A5B35600BA7800 /* Info.plist */,
+				27C55CA818A5B35600BA7800 /* Prefix.pch */,
+				27C55CA918A5B35600BA7800 /* main.m */,
+				27C55CAB18A5B35600BA7800 /* Entitlements.entitlements */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		27C55CAC18A5B35600BA7800 /* Vendors */ = {
+			isa = PBXGroup;
+			children = (
+				27C55CEE18A5B49500BA7800 /* FDRequestClient Static Library.xcodeproj */,
+				27C55CE018A5B3E800BA7800 /* FDDataClient Static Library.xcodeproj */,
+			);
+			name = Vendors;
+			path = "FDDataClient iOS Example/Vendors";
+			sourceTree = "<group>";
+		};
+		27C55CAD18A5B35600BA7800 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				27C55CBD18A5B35600BA7800 /* Classes */,
+				27C55CBA18A5B35600BA7800 /* Views */,
+				27C55CB118A5B35600BA7800 /* Resources */,
+				27C55CAE18A5B35600BA7800 /* AppDelegate.h */,
+				27C55CAF18A5B35600BA7800 /* AppDelegate.m */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		27C55CB118A5B35600BA7800 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				27C55CB218A5B35600BA7800 /* Images.xcassets */,
+				27C55CB418A5B35600BA7800 /* InfoPlist.strings */,
+				27C55CB618A5B35600BA7800 /* iTunesArtwork */,
+				27C55CB818A5B35600BA7800 /* iTunesArtwork@2x */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		27C55CBA18A5B35600BA7800 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				27C55CBC18A5B35600BA7800 /* Controllers */,
+				27C55CBB18A5B35600BA7800 /* Controls */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		27C55CBB18A5B35600BA7800 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controls;
+			sourceTree = "<group>";
+		};
+		27C55CBC18A5B35600BA7800 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		27C55CBD18A5B35600BA7800 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				27C55CC818A5B35600BA7800 /* Common */,
+				27C55CC718A5B35600BA7800 /* Controllers */,
+				27C55CC218A5B35600BA7800 /* Controls */,
+				27C55CC118A5B35600BA7800 /* Categories */,
+				27C55CC018A5B35600BA7800 /* Models */,
+				27C55CBF18A5B35600BA7800 /* Managers */,
+				27C55CBE18A5B35600BA7800 /* Services */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		27C55CBE18A5B35600BA7800 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		27C55CBF18A5B35600BA7800 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		27C55CC018A5B35600BA7800 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		27C55CC118A5B35600BA7800 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		27C55CC218A5B35600BA7800 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				27C55CC318A5B35600BA7800 /* Common */,
+			);
+			path = Controls;
+			sourceTree = "<group>";
+		};
+		27C55CC318A5B35600BA7800 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		27C55CC718A5B35600BA7800 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		27C55CC818A5B35600BA7800 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		27C55CC918A5B35600BA7800 /* iPhone */ = {
+			isa = PBXGroup;
+			children = (
+				27C55CCE18A5B35600BA7800 /* Classes */,
+				27C55CCB18A5B35600BA7800 /* Views */,
+				27C55CCA18A5B35600BA7800 /* Resources */,
+			);
+			path = iPhone;
+			sourceTree = "<group>";
+		};
+		27C55CCA18A5B35600BA7800 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		27C55CCB18A5B35600BA7800 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				27C55CCC18A5B35600BA7800 /* Controllers */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		27C55CCC18A5B35600BA7800 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				27C55CCD18A5B35600BA7800 /* Common */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		27C55CCD18A5B35600BA7800 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		27C55CCE18A5B35600BA7800 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				27C55CCF18A5B35600BA7800 /* Controllers */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		27C55CCF18A5B35600BA7800 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				27C55CD018A5B35600BA7800 /* Common */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		27C55CD018A5B35600BA7800 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		27C55CD118A5B35600BA7800 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				27C55CD618A5B35600BA7800 /* Classes */,
+				27C55CD318A5B35600BA7800 /* Views */,
+				27C55CD218A5B35600BA7800 /* Resources */,
+			);
+			path = iPad;
+			sourceTree = "<group>";
+		};
+		27C55CD218A5B35600BA7800 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		27C55CD318A5B35600BA7800 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				27C55CD418A5B35600BA7800 /* Controllers */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		27C55CD418A5B35600BA7800 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				27C55CD518A5B35600BA7800 /* Common */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		27C55CD518A5B35600BA7800 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		27C55CD618A5B35600BA7800 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				27C55CD718A5B35600BA7800 /* Controllers */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		27C55CD718A5B35600BA7800 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				27C55CD818A5B35600BA7800 /* Common */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		27C55CD818A5B35600BA7800 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		27C55CE118A5B3E800BA7800 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				27C55CE618A5B3E800BA7800 /* libFDDataClient.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		27C55CEF18A5B49500BA7800 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				27C55CF318A5B49500BA7800 /* libFDRequestClient.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		27C55C9918A5B35600BA7800 /* FDDataClient iOS Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27C55CDC18A5B35600BA7800 /* Build configuration list for PBXNativeTarget "FDDataClient iOS Example" */;
+			buildPhases = (
+				27C55C9618A5B35600BA7800 /* Sources */,
+				27C55C9718A5B35600BA7800 /* Frameworks */,
+				27C55C9818A5B35600BA7800 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				27C55CF518A5B49B00BA7800 /* PBXTargetDependency */,
+				27C55CEA18A5B44F00BA7800 /* PBXTargetDependency */,
+			);
+			name = "FDDataClient iOS Example";
+			productName = "FDDataClient iOS Example";
+			productReference = 27C55C9A18A5B35600BA7800 /* FDDataClient iOS Example.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		27C55C9218A5B35600BA7800 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = FD;
+				LastUpgradeCheck = 0500;
+			};
+			buildConfigurationList = 27C55C9518A5B35600BA7800 /* Build configuration list for PBXProject "FDDataClient iOS Example" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 27C55C9118A5B35600BA7800;
+			productRefGroup = 27C55C9B18A5B35600BA7800 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 27C55CE118A5B3E800BA7800 /* Products */;
+					ProjectRef = 27C55CE018A5B3E800BA7800 /* FDDataClient Static Library.xcodeproj */;
+				},
+				{
+					ProductGroup = 27C55CEF18A5B49500BA7800 /* Products */;
+					ProjectRef = 27C55CEE18A5B49500BA7800 /* FDRequestClient Static Library.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				27C55C9918A5B35600BA7800 /* FDDataClient iOS Example */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		27C55CE618A5B3E800BA7800 /* libFDDataClient.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFDDataClient.a;
+			remoteRef = 27C55CE518A5B3E800BA7800 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		27C55CF318A5B49500BA7800 /* libFDRequestClient.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFDRequestClient.a;
+			remoteRef = 27C55CF218A5B49500BA7800 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		27C55C9818A5B35600BA7800 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27C55CB918A5B35600BA7800 /* iTunesArtwork@2x in Resources */,
+				27C55CB318A5B35600BA7800 /* Images.xcassets in Resources */,
+				27C55CB718A5B35600BA7800 /* iTunesArtwork in Resources */,
+				27C55CB518A5B35600BA7800 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		27C55C9618A5B35600BA7800 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27C55CB018A5B35600BA7800 /* AppDelegate.m in Sources */,
+				27C55CAA18A5B35600BA7800 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		27C55CEA18A5B44F00BA7800 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FDDataClient;
+			targetProxy = 27C55CE918A5B44F00BA7800 /* PBXContainerItemProxy */;
+		};
+		27C55CF518A5B49B00BA7800 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FDRequestClient;
+			targetProxy = 27C55CF418A5B49B00BA7800 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		27C55CD918A5B35600BA7800 /* Ad Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_IDENTIFIER = "com.1414degrees.FDDataClient-iOS-Example.adhoc";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = "FDDataClient iOS Example/Supporting Files/Entitlements.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = AD_HOC;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(BUILD_DIR)/Release$(EFFECTIVE_PLATFORM_NAME)\"/**";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "\"$(BUILD_DIR)/Release$(EFFECTIVE_PLATFORM_NAME)\"/**";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Ad Hoc";
+		};
+		27C55CDA18A5B35600BA7800 /* App Store */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_IDENTIFIER = "com.1414degrees.FDDataClient-iOS-Example";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = "FDDataClient iOS Example/Supporting Files/Entitlements.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = APP_STORE;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(BUILD_DIR)/Release$(EFFECTIVE_PLATFORM_NAME)\"/**";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "\"$(BUILD_DIR)/Release$(EFFECTIVE_PLATFORM_NAME)\"/**";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "App Store";
+		};
+		27C55CDB18A5B35600BA7800 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_IDENTIFIER = "com.1414degrees.FDDataClient-iOS-Example.debug";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = "FDDataClient iOS Example/Supporting Files/Entitlements.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		27C55CDD18A5B35600BA7800 /* Ad Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FDDataClient iOS Example/Supporting Files/Prefix.pch";
+				INFOPLIST_FILE = "FDDataClient iOS Example/Supporting Files/Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = "Ad Hoc";
+		};
+		27C55CDE18A5B35600BA7800 /* App Store */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FDDataClient iOS Example/Supporting Files/Prefix.pch";
+				INFOPLIST_FILE = "FDDataClient iOS Example/Supporting Files/Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = "App Store";
+		};
+		27C55CDF18A5B35600BA7800 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FDDataClient iOS Example/Supporting Files/Prefix.pch";
+				INFOPLIST_FILE = "FDDataClient iOS Example/Supporting Files/Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		27C55C9518A5B35600BA7800 /* Build configuration list for PBXProject "FDDataClient iOS Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27C55CD918A5B35600BA7800 /* Ad Hoc */,
+				27C55CDA18A5B35600BA7800 /* App Store */,
+				27C55CDB18A5B35600BA7800 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Ad Hoc";
+		};
+		27C55CDC18A5B35600BA7800 /* Build configuration list for PBXNativeTarget "FDDataClient iOS Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27C55CDD18A5B35600BA7800 /* Ad Hoc */,
+				27C55CDE18A5B35600BA7800 /* App Store */,
+				27C55CDF18A5B35600BA7800 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Ad Hoc";
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 27C55C9218A5B35600BA7800 /* Project object */;
+}

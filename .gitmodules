@@ -1,0 +1,3 @@
+[submodule "Vendors/FDRequestClient"]
+	path = Vendors/FDRequestClient
+	url = git@github.com:reidmain/FDRequestClient.git
