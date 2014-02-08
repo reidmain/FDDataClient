@@ -1,4 +1,5 @@
 #import <FDRequestClient/FDRequestClient.h>
+#import "FDDataClientDelegate.h"
 
 
 #pragma mark Constants
@@ -13,6 +14,8 @@
 
 
 #pragma mark - Properties
+
+@property (nonatomic, weak) id<FDDataClientDelegate> delegate;
 
 
 #pragma mark - Constructors

@@ -91,6 +91,38 @@
 		
 		return array;
 	}
+	// If the object is a dictionary attempt to transform it to a local model.
+	else if ([object isKindOfClass: [NSDictionary class]] == YES)
+	{
+		// Ask delegate for the model class represented by the dictionary.
+		Class modelClass = [_delegate modelClassForDictionary: object];
+		
+		// Create an instance of the model.
+		FDModel *model = [modelClass new];
+		
+		// Get the mapping of remote key paths to local key paths for the model class.
+		NSDictionary *keyPathsMapping = [modelClass remoteKeyPathsToLocalKeyPaths];
+		
+		// Iterate over the mapping and attempt to parse the objects for each remote key path into their respective local model key path.
+		[keyPathsMapping enumerateKeysAndObjectsUsingBlock: ^(id remoteKeyPath, id localKeyPath, BOOL *stop)
+			{
+				id remoteObject = [object valueForKeyPath: remoteKeyPath];
+				id transformedObject = [self _transformObjectToLocalModels: remoteObject];
+				
+				@try
+				{
+					[model setValue: transformedObject 
+						forKeyPath: localKeyPath];
+				}
+				// If the key path on the local model does not exist an exception will most likely be thrown. Catch this exeception and log it so that any incorrect mappings will not crash the application.
+				@catch (NSException *exception)
+				{
+					NSLog(@"%@", exception);
+				}
+			}];
+		
+		return model;
+	}
 	
 	// Return the object if it could not be transformed.
 	return object;
