@@ -12,8 +12,12 @@
 		270343BE18A5B25D00B9C0D4 /* libFDRequestClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 270343BB18A5B24D00B9C0D4 /* libFDRequestClient.a */; };
 		270343BF18A5B27600B9C0D4 /* FDDataClient.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 270343AB18A5B0F500B9C0D4 /* FDDataClient.h */; };
 		270343C018A5B27600B9C0D4 /* FDModel.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 270343AD18A5B0F500B9C0D4 /* FDModel.h */; };
+		2740637118A9A75100BB8206 /* FDDeclaredProperty.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 27F9215518A9A2AA00686D64 /* FDDeclaredProperty.h */; };
+		2740637218A9A75400BB8206 /* NSObject+PropertyType.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 27F9215218A9A29800686D64 /* NSObject+PropertyType.h */; };
 		275E7D7118A5C3D800D8BB82 /* FDDataClientDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 275E7D7018A5C37B00D8BB82 /* FDDataClientDelegate.h */; };
 		27D82F5718A5B083004A9D05 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27D82F5618A5B083004A9D05 /* Foundation.framework */; };
+		27F9215418A9A29800686D64 /* NSObject+PropertyType.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F9215318A9A29800686D64 /* NSObject+PropertyType.m */; };
+		27F9215718A9A2AA00686D64 /* FDDeclaredProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F9215618A9A2AA00686D64 /* FDDeclaredProperty.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +44,8 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				2740637218A9A75400BB8206 /* NSObject+PropertyType.h in CopyFiles */,
+				2740637118A9A75100BB8206 /* FDDeclaredProperty.h in CopyFiles */,
 				275E7D7118A5C3D800D8BB82 /* FDDataClientDelegate.h in CopyFiles */,
 				270343BF18A5B27600B9C0D4 /* FDDataClient.h in CopyFiles */,
 				270343C018A5B27600B9C0D4 /* FDModel.h in CopyFiles */,
@@ -58,6 +64,10 @@
 		27D82F5318A5B083004A9D05 /* libFDDataClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFDDataClient.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		27D82F5618A5B083004A9D05 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		27D82F5A18A5B083004A9D05 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
+		27F9215218A9A29800686D64 /* NSObject+PropertyType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+PropertyType.h"; sourceTree = "<group>"; };
+		27F9215318A9A29800686D64 /* NSObject+PropertyType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+PropertyType.m"; sourceTree = "<group>"; };
+		27F9215518A9A2AA00686D64 /* FDDeclaredProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDDeclaredProperty.h; sourceTree = "<group>"; };
+		27F9215618A9A2AA00686D64 /* FDDeclaredProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDDeclaredProperty.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +86,10 @@
 		270343AA18A5B0F500B9C0D4 /* FDDataClient */ = {
 			isa = PBXGroup;
 			children = (
+				27F9215518A9A2AA00686D64 /* FDDeclaredProperty.h */,
+				27F9215618A9A2AA00686D64 /* FDDeclaredProperty.m */,
+				27F9215218A9A29800686D64 /* NSObject+PropertyType.h */,
+				27F9215318A9A29800686D64 /* NSObject+PropertyType.m */,
 				275E7D7018A5C37B00D8BB82 /* FDDataClientDelegate.h */,
 				270343AB18A5B0F500B9C0D4 /* FDDataClient.h */,
 				270343AC18A5B0F500B9C0D4 /* FDDataClient.m */,
@@ -214,7 +228,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27F9215418A9A29800686D64 /* NSObject+PropertyType.m in Sources */,
 				270343B118A5B12F00B9C0D4 /* FDDataClient.m in Sources */,
+				27F9215718A9A2AA00686D64 /* FDDeclaredProperty.m in Sources */,
 				270343B218A5B13100B9C0D4 /* FDModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

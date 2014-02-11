@@ -1,4 +1,5 @@
 #import "FDDataClient.h"
+#import "NSObject+PropertyType.h"
 #import "FDModel.h"
 
 
@@ -109,12 +110,20 @@
 			// Iterate over the mapping and attempt to parse the objects for each remote key path into their respective local model key path.
 			[keyPathsMapping enumerateKeysAndObjectsUsingBlock: ^(id remoteKeyPath, id localKeyPath, BOOL *stop)
 				{
+					// Load the object for the remote key path and attempt to transform it to a local model.
 					id remoteObject = [object valueForKeyPath: remoteKeyPath];
 					id transformedObject = [self _transformObjectToLocalModels: remoteObject];
 					
 					// If the transformed object is nil do not attempt to set it on the model because it could be erasing data that already exists.
 					if (transformedObject != nil)
 					{
+						// Ensure that the transformed object is the same type as the property that is being set.
+						FDDeclaredProperty *declaredProperty = [modelClass declaredPropertyForName: localKeyPath];
+						if ([transformedObject isKindOfClass: declaredProperty.type] == NO)
+						{
+							return;
+						}
+						
 						@try
 						{
 							[model setValue: transformedObject 
