@@ -28,6 +28,18 @@
 
 #pragma mark - Properties
 
+- (void)setHeaderFieldsToLog: (NSArray *)headerFieldsToLog
+{
+	[_requestClient setHeaderFieldsToLog: headerFieldsToLog];
+}
+
+- (NSArray *)headerFieldsToLog
+{
+	NSArray *headerFieldsToLog = [_requestClient headerFieldsToLog];
+	
+	return headerFieldsToLog;
+}
+
 
 #pragma mark - Constructors
 
