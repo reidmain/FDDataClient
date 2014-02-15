@@ -131,7 +131,8 @@
 					{
 						// Ensure that the transformed object is the same type as the property that is being set.
 						FDDeclaredProperty *declaredProperty = [modelClass declaredPropertyForName: localKeyPath];
-						if ([transformedObject isKindOfClass: declaredProperty.type] == NO)
+						if (declaredProperty.type != nil 
+							 && [transformedObject isKindOfClass: declaredProperty.type] == NO)
 						{
 							return;
 						}
@@ -144,7 +145,7 @@
 						// If the key path on the local model does not exist an exception will most likely be thrown. Catch this exeception and log it so that any incorrect mappings will not crash the application.
 						@catch (NSException *exception)
 						{
-							NSLog(@"%@", exception);
+							FDLog(FDLogLevelInfo, @"Could not set %@ property on %@ because %@", localKeyPath, [model class], [exception reason]);
 						}
 					}
 				}];
