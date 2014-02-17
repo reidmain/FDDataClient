@@ -98,7 +98,7 @@
 	{
 		NSMutableArray *array = [NSMutableArray arrayWithCapacity: [object count]];
 		
-		[object enumerateObjectsUsingBlock: ^(id objectInArray, NSUInteger idx, BOOL *stop)
+		[object enumerateObjectsUsingBlock: ^(id objectInArray, NSUInteger index, BOOL *stop)
 			{
 				id transformedObject = [self _transformObjectToLocalModels: objectInArray];
 				
@@ -113,8 +113,23 @@
 		// Ask delegate for the model class represented by the dictionary.
 		Class modelClass = [_delegate modelClassForDictionary: object];
 		
-		// If the delegate did not return a model class do not attempt to create one.
-		if (modelClass != nil)
+		// If the delegate did not return a model class iterate over all the keys and objects and attempt to convert them to local models.
+		if (modelClass == nil)
+		{
+			NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithCapacity: [object count]];
+			
+			[object enumerateKeysAndObjectsUsingBlock: ^(id key, id objectInDictionary, BOOL *stop)
+				{
+					id transformedObject = [self _transformObjectToLocalModels: objectInDictionary];
+					
+					[dictionary setValue: transformedObject 
+						forKey: key];
+				}];
+			
+			return dictionary;
+		}
+		// If the delegate returned a model class populate an instance of it.
+		else
 		{
 			// Get the mapping of remote key paths to local key paths for the model class.
 			NSDictionary *keyPathsMapping = [modelClass remoteKeyPathsToLocalKeyPaths];
