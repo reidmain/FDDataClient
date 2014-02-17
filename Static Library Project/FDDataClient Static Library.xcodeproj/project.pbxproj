@@ -15,6 +15,10 @@
 		2740637118A9A75100BB8206 /* FDDeclaredProperty.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 27F9215518A9A2AA00686D64 /* FDDeclaredProperty.h */; };
 		2740637218A9A75400BB8206 /* NSObject+PropertyType.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 27F9215218A9A29800686D64 /* NSObject+PropertyType.h */; };
 		275E7D7118A5C3D800D8BB82 /* FDDataClientDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 275E7D7018A5C37B00D8BB82 /* FDDataClientDelegate.h */; };
+		27B3A10518B002020008E1E0 /* FDWeakMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B3A10418B002020008E1E0 /* FDWeakMutableDictionary.m */; };
+		27B3A10818B004940008E1E0 /* FDWeakReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B3A10718B004940008E1E0 /* FDWeakReference.m */; };
+		27B3A10918B006E70008E1E0 /* FDWeakReference.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 27B3A10618B004940008E1E0 /* FDWeakReference.h */; };
+		27B3A10A18B006E70008E1E0 /* FDWeakMutableDictionary.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 27B3A10318B002020008E1E0 /* FDWeakMutableDictionary.h */; };
 		27D82F5718A5B083004A9D05 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27D82F5618A5B083004A9D05 /* Foundation.framework */; };
 		27F9215418A9A29800686D64 /* NSObject+PropertyType.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F9215318A9A29800686D64 /* NSObject+PropertyType.m */; };
 		27F9215718A9A2AA00686D64 /* FDDeclaredProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F9215618A9A2AA00686D64 /* FDDeclaredProperty.m */; };
@@ -44,6 +48,8 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				27B3A10918B006E70008E1E0 /* FDWeakReference.h in CopyFiles */,
+				27B3A10A18B006E70008E1E0 /* FDWeakMutableDictionary.h in CopyFiles */,
 				2740637218A9A75400BB8206 /* NSObject+PropertyType.h in CopyFiles */,
 				2740637118A9A75100BB8206 /* FDDeclaredProperty.h in CopyFiles */,
 				275E7D7118A5C3D800D8BB82 /* FDDataClientDelegate.h in CopyFiles */,
@@ -61,6 +67,10 @@
 		270343AE18A5B0F500B9C0D4 /* FDModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDModel.m; sourceTree = "<group>"; };
 		270343B618A5B24C00B9C0D4 /* FDRequestClient Static Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "FDRequestClient Static Library.xcodeproj"; path = "FDRequestClient/Static Library Project/FDRequestClient Static Library.xcodeproj"; sourceTree = "<group>"; };
 		275E7D7018A5C37B00D8BB82 /* FDDataClientDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FDDataClientDelegate.h; sourceTree = "<group>"; };
+		27B3A10318B002020008E1E0 /* FDWeakMutableDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDWeakMutableDictionary.h; sourceTree = "<group>"; };
+		27B3A10418B002020008E1E0 /* FDWeakMutableDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDWeakMutableDictionary.m; sourceTree = "<group>"; };
+		27B3A10618B004940008E1E0 /* FDWeakReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDWeakReference.h; sourceTree = "<group>"; };
+		27B3A10718B004940008E1E0 /* FDWeakReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDWeakReference.m; sourceTree = "<group>"; };
 		27D82F5318A5B083004A9D05 /* libFDDataClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFDDataClient.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		27D82F5618A5B083004A9D05 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		27D82F5A18A5B083004A9D05 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
@@ -86,6 +96,10 @@
 		270343AA18A5B0F500B9C0D4 /* FDDataClient */ = {
 			isa = PBXGroup;
 			children = (
+				27B3A10618B004940008E1E0 /* FDWeakReference.h */,
+				27B3A10718B004940008E1E0 /* FDWeakReference.m */,
+				27B3A10318B002020008E1E0 /* FDWeakMutableDictionary.h */,
+				27B3A10418B002020008E1E0 /* FDWeakMutableDictionary.m */,
 				27F9215518A9A2AA00686D64 /* FDDeclaredProperty.h */,
 				27F9215618A9A2AA00686D64 /* FDDeclaredProperty.m */,
 				27F9215218A9A29800686D64 /* NSObject+PropertyType.h */,
@@ -231,7 +245,9 @@
 				27F9215418A9A29800686D64 /* NSObject+PropertyType.m in Sources */,
 				270343B118A5B12F00B9C0D4 /* FDDataClient.m in Sources */,
 				27F9215718A9A2AA00686D64 /* FDDeclaredProperty.m in Sources */,
+				27B3A10518B002020008E1E0 /* FDWeakMutableDictionary.m in Sources */,
 				270343B218A5B13100B9C0D4 /* FDModel.m in Sources */,
+				27B3A10818B004940008E1E0 /* FDWeakReference.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,6 +1,7 @@
 #import "FDDataClient.h"
 #import "NSObject+PropertyType.h"
 #import "FDModel.h"
+#import "FDWeakMutableDictionary.h"
 
 
 #pragma mark Constants
@@ -23,6 +24,7 @@
 @implementation FDDataClient
 {
 	@private __strong FDRequestClient *_requestClient;
+	@private __strong FDWeakMutableDictionary *_existingModels;
 }
 
 
@@ -53,6 +55,7 @@
 	
 	// Initialize instance variables.
 	_requestClient = [FDRequestClient new];
+	_existingModels = [FDWeakMutableDictionary new];
 	
 	// Return initialized instance.
 	return self;
@@ -113,11 +116,37 @@
 		// If the delegate did not return a model class do not attempt to create one.
 		if (modelClass != nil)
 		{
-			// Create an instance of the model.
-			FDModel *model = [modelClass new];
-			
 			// Get the mapping of remote key paths to local key paths for the model class.
 			NSDictionary *keyPathsMapping = [modelClass remoteKeyPathsToLocalKeyPaths];
+			
+			// Iterate over the mapping and attempt to find the object that represents the identifier of the model.
+			__block id identifier = nil;
+			[keyPathsMapping enumerateKeysAndObjectsUsingBlock: ^(id remoteKeyPath, id localKeyPath, BOOL *stop)
+				{
+					if ([localKeyPath isEqualToString: @"identifier"])
+					{
+						id a = [object valueForKeyPath: remoteKeyPath];
+						identifier = [self _transformObjectToLocalModels: a];
+						*stop = YES;
+					}
+				}];
+			
+			FDModel *model = nil;
+			
+			if (identifier != nil)
+			{
+				model = [_existingModels objectForKey: identifier];
+				if (model == nil)
+				{
+					model = [modelClass new];
+					[_existingModels setObject: model 
+						forKey: identifier];
+				}
+			}
+			else
+			{
+				model = [modelClass new];
+			}
 			
 			// Iterate over the mapping and attempt to parse the objects for each remote key path into their respective local model key path.
 			[keyPathsMapping enumerateKeysAndObjectsUsingBlock: ^(id remoteKeyPath, id localKeyPath, BOOL *stop)
