@@ -47,6 +47,12 @@
 	return nil;
 }
 
++ (NSString *)remoteKeyPathForUniqueIdentifier
+{
+	// This method should be overridden by all subclasses.
+	return nil;
+}
+
 
 #pragma mark - Overridden Methods
 

@@ -30,6 +30,7 @@
 #pragma mark - Static Methods
 
 + (NSDictionary *)remoteKeyPathsToLocalKeyPaths;
++ (NSString *)remoteKeyPathForUniqueIdentifier;
 
 
 #pragma mark - Instance Methods

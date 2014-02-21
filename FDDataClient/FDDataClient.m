@@ -11,6 +11,8 @@
 
 @interface FDDataClient ()
 
+- (FDModel *)_modelForClass: (Class)modelClass 
+	withIdentifier: (id)identifier;
 - (id)_transformObjectToLocalModels: (id)object;
 
 @end
@@ -24,7 +26,7 @@
 @implementation FDDataClient
 {
 	@private __strong FDRequestClient *_requestClient;
-	@private __strong FDWeakMutableDictionary *_existingModels;
+	@private __strong NSMutableDictionary *_existingModelsByClass;
 }
 
 
@@ -55,7 +57,7 @@
 	
 	// Initialize instance variables.
 	_requestClient = [FDRequestClient new];
-	_existingModels = [FDWeakMutableDictionary new];
+	_existingModelsByClass = [NSMutableDictionary new];
 	
 	// Return initialized instance.
 	return self;
@@ -91,6 +93,62 @@
 
 #pragma mark - Private Methods
 
+- (FDModel *)_modelForClass: (Class)modelClass 
+	withIdentifier: (id)identifier
+{
+	// If the modelClass parameter is not a subclass of FDModel do not attempt to create anything.
+	if ([modelClass isSubclassOfClass: [FDModel class]] == NO)
+	{
+		FDLog(FDLogLevelTrace, @"The modelClass paramter of %s must be a subclass of FDModel.", __PRETTY_FUNCTION__);
+		
+		return nil;
+	}
+	else if ([identifier conformsToProtocol: @protocol(NSCopying)] == NO)
+	{
+		FDLog(FDLogLevelTrace, @"The identifier paramter of %s must implement NSCopying.", __PRETTY_FUNCTION__);
+	}
+	
+	FDModel *model = nil;
+	
+	// If a identifier has been passed in check if a instance of modelClass with that identifier already exists.
+	if (FDIsEmpty(identifier) == NO)
+	{
+		NSString *modelClassAsString = NSStringFromClass(modelClass);
+		
+		@synchronized(self)
+		{
+			// Load the dictionary of all the existings modelClass instances. If the dictionary does not yet exist create one.
+			FDWeakMutableDictionary *existingModels = [_existingModelsByClass objectForKey: modelClassAsString];
+			if (existingModels == nil)
+			{
+				existingModels = [FDWeakMutableDictionary dictionary];
+				[_existingModelsByClass setValue: existingModels 
+					forKey: modelClassAsString];
+			}
+			
+			// Load the existing modelClass instance for the identifier.
+			model = [existingModels objectForKey: identifier];
+			
+			// If the model does not exist create a blank instance of it and assign the identifier.
+			if (model == nil)
+			{
+				model = [modelClass new];
+				[model setIdentifier: identifier];
+				
+				[existingModels setObject: model 
+					forKey: identifier];
+			}
+		}
+	}
+	// If no identifier has been passed in create a blank instance of modelClass.
+	else
+	{
+		model = [modelClass new];
+	}
+	
+	return model;
+}
+
 - (id)_transformObjectToLocalModels: (id)object
 {
 	// If the object is an array attempt to transform each element of the array.
@@ -110,7 +168,7 @@
 	// If the object is a dictionary attempt to transform it to a local model.
 	else if ([object isKindOfClass: [NSDictionary class]] == YES)
 	{
-		// Ask delegate for the model class represented by the dictionary.
+		// Ask the delegate for the model class represented by the dictionary.
 		Class modelClass = [_delegate modelClassForDictionary: object];
 		
 		// If the delegate did not return a model class iterate over all the keys and objects and attempt to convert them to local models.
@@ -131,39 +189,18 @@
 		// If the delegate returned a model class populate an instance of it.
 		else
 		{
+			// Get the remote key path that that points to the unique identifier of the object.
+			NSString *remoteKeyPathForUniqueIdentifier = [modelClass remoteKeyPathForUniqueIdentifier];
+			id identifier = [object valueForKeyPath: remoteKeyPathForUniqueIdentifier];
+			
+			// Load the instance of the model for the identifier if it exists. Otherwise create a blank instance of the model.
+			FDModel *model = [self _modelForClass: modelClass 
+				withIdentifier: identifier];
+			
 			// Get the mapping of remote key paths to local key paths for the model class.
 			NSDictionary *keyPathsMapping = [modelClass remoteKeyPathsToLocalKeyPaths];
 			
-			// Iterate over the mapping and attempt to find the object that represents the identifier of the model.
-			__block id identifier = nil;
-			[keyPathsMapping enumerateKeysAndObjectsUsingBlock: ^(id remoteKeyPath, id localKeyPath, BOOL *stop)
-				{
-					if ([localKeyPath isEqualToString: @"identifier"])
-					{
-						id a = [object valueForKeyPath: remoteKeyPath];
-						identifier = [self _transformObjectToLocalModels: a];
-						*stop = YES;
-					}
-				}];
-			
-			FDModel *model = nil;
-			
-			if (identifier != nil)
-			{
-				model = [_existingModels objectForKey: identifier];
-				if (model == nil)
-				{
-					model = [modelClass new];
-					[_existingModels setObject: model 
-						forKey: identifier];
-				}
-			}
-			else
-			{
-				model = [modelClass new];
-			}
-			
-			// Iterate over the mapping and attempt to parse the objects for each remote key path into their respective local model key path.
+			// Iterate over the mapping and attempt to parse the objects for each remote key path into their respective local model key paths.
 			[keyPathsMapping enumerateKeysAndObjectsUsingBlock: ^(id remoteKeyPath, id localKeyPath, BOOL *stop)
 				{
 					// Load the object for the remote key path and attempt to transform it to a local model.
@@ -173,8 +210,19 @@
 					// If the transformed object is nil do not attempt to set it on the model because it could be erasing data that already exists.
 					if (transformedObject != nil)
 					{
-						// Ensure that the transformed object is the same type as the property that is being set.
+						// Get the property info on the property that is about to be set.
 						FDDeclaredProperty *declaredProperty = [modelClass declaredPropertyForName: localKeyPath];
+						
+						// If the property being set is of type FDModel and the transformed object is a NSString or NSValue it is possible that the string is the unique identifier for the model. Check and see if an instance of model class with that identifier exists.
+						if ([declaredProperty.type isSubclassOfClass: [FDModel class]] == YES 
+							&& ([transformedObject isKindOfClass: [NSString class]] == YES 
+								|| [transformedObject isKindOfClass: [NSValue class]] == YES))
+						{
+							transformedObject = [self _modelForClass: declaredProperty.type 
+								withIdentifier: transformedObject];
+						}
+						
+						// If the transformed object is not the same type as the property that is being set stop parsing this remote key path.
 						if (declaredProperty.type != nil 
 							 && [transformedObject isKindOfClass: declaredProperty.type] == NO)
 						{
