@@ -171,6 +171,18 @@
 		// Ask the delegate for the model class represented by the dictionary.
 		Class modelClass = [_delegate modelClassForDictionary: object];
 		
+		// Ensure the model class is a subclass of FDModel.
+		if ([modelClass isSubclassOfClass: [FDModel class]] == NO)
+		{
+			[NSException raise: NSInternalInconsistencyException 
+				format: @"The %@ method on %@ must return a subclass of FDModel", 
+					NSStringFromSelector(@selector(modelClassForDictionary:)),
+					_delegate
+					];
+			
+			return object;
+		}
+		
 		// If the delegate did not return a model class iterate over all the keys and objects and attempt to convert them to local models.
 		if (modelClass == nil)
 		{

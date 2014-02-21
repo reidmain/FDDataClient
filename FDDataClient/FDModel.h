@@ -1,12 +1,3 @@
-#pragma mark Protocol Defintion
-
-@protocol FDModel <NSObject>
-
-+ (NSDictionary *)remoteKeyPathsToLocalKeyPaths;
-
-@end
-
-
 #pragma mark Constants
 
 
@@ -15,8 +6,7 @@
 
 #pragma mark - Class Interface
 
-@interface FDModel : NSObject<
-	FDModel>
+@interface FDModel : NSObject
 
 
 #pragma mark - Properties

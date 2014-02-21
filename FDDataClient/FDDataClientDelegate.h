@@ -13,7 +13,8 @@
 
 @required
 
-- (Class<FDModel>)modelClassForDictionary: (NSDictionary *)dictionary;
+// The class returned from this method must be a subclass of FDModel.
+- (Class)modelClassForDictionary: (NSDictionary *)dictionary;
 
 
 #pragma mark - Optional Methods
