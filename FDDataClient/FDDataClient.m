@@ -233,6 +233,12 @@
 							transformedObject = [self _modelForClass: declaredProperty.type 
 								withIdentifier: transformedObject];
 						}
+						// If the property being set is a NSURL and the transformed object is a NSString convert the string to a NSURL object.
+						else if ([declaredProperty.type isSubclassOfClass: [NSURL class]] == YES 
+							&& [transformedObject isKindOfClass: [NSString class]] == YES)
+						{
+							transformedObject = [NSURL URLWithString: transformedObject];
+						}
 						
 						// If the transformed object is not the same type as the property that is being set stop parsing this remote key path.
 						if (declaredProperty.type != nil 
