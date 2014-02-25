@@ -99,13 +99,14 @@
 	// If the modelClass parameter is not a subclass of FDModel do not attempt to create anything.
 	if ([modelClass isSubclassOfClass: [FDModel class]] == NO)
 	{
-		FDLog(FDLogLevelTrace, @"The modelClass paramter of %s must be a subclass of FDModel.", __PRETTY_FUNCTION__);
+		FDLog(FDLogLevelTrace, @"%s was called with %@ as the modelClass parameter which is not a subclass of FDModel.", __PRETTY_FUNCTION__, modelClass);
 		
 		return nil;
 	}
-	else if ([identifier conformsToProtocol: @protocol(NSCopying)] == NO)
+	else if (FDIsEmpty(identifier) == NO 
+		&& [identifier conformsToProtocol: @protocol(NSCopying)] == NO)
 	{
-		FDLog(FDLogLevelTrace, @"The identifier paramter of %s must implement NSCopying.", __PRETTY_FUNCTION__);
+		FDLog(FDLogLevelTrace, @"%s was called with %@ as the identifier paramter which does not implement NSCopying.", __PRETTY_FUNCTION__, identifier);
 	}
 	
 	FDModel *model = nil;
