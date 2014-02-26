@@ -270,6 +270,11 @@
 			return model;
 		}
 	}
+	// If the object is a NSNull replace it with nil to prevent the inevitable crash caused by NSNull getting sent a message.
+	else if (object == [NSNull null])
+	{
+		return nil;
+	}
 	
 	// Return the object if it could not be transformed.
 	return object;
