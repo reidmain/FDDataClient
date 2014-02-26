@@ -16,6 +16,7 @@
 #pragma mark - Properties
 
 @property (nonatomic, weak) id<FDDataClientDelegate> delegate;
+@property (nonatomic, strong) NSDateFormatter *dateFormatter;
 @property (nonatomic, copy) NSArray *headerFieldsToLog;
 
 

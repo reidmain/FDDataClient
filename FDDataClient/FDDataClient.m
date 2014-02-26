@@ -240,6 +240,12 @@
 						{
 							transformedObject = [NSURL URLWithString: transformedObject];
 						}
+						// If the property being set is a NSDate and the transformed object is a NSString attempt to convert the string to a NSDate using the data client's date formatter.
+						else if ([declaredProperty.type isSubclassOfClass: [NSDate class]] == YES 
+							&& [transformedObject isKindOfClass: [NSString class]] == YES)
+						{
+							transformedObject = [_dateFormatter dateFromString: transformedObject];
+						}
 						
 						// If the transformed object is not the same type as the property that is being set stop parsing this remote key path.
 						if (declaredProperty.type != nil 
