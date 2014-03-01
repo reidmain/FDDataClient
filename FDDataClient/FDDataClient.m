@@ -1,7 +1,5 @@
 #import "FDDataClient.h"
-#import "NSObject+PropertyType.h"
 #import "FDModel.h"
-#import "FDWeakMutableDictionary.h"
 
 
 #pragma mark Constants
