@@ -28,7 +28,7 @@
 
 #pragma mark - Instance Methods
 
-- (FDRequestClientTask *)loadURLRequest: (FDURLRequest *)urlRequest 
+- (FDRequestClientTask *)loadHTTPRequest: (FDHTTPRequest *)httpRequest 
 	authorizationBlock: (FDRequestClientTaskAuthorizationBlock)authorizationBlock 
 	progressBlock: (FDRequestClientTaskProgressBlock)progressBlock 
 	dataParserBlock: (FDRequestClientTaskDataParserBlock)dataParserBlock 

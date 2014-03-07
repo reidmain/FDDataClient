@@ -67,13 +67,13 @@
 
 #pragma mark - Overridden Methods
 
-- (FDRequestClientTask *)loadURLRequest: (FDURLRequest *)urlRequest 
+- (FDRequestClientTask *)loadHTTPRequest: (FDHTTPRequest *)httpRequest 
 	authorizationBlock: (FDRequestClientTaskAuthorizationBlock)authorizationBlock 
 	progressBlock: (FDRequestClientTaskProgressBlock)progressBlock 
 	dataParserBlock: (FDRequestClientTaskDataParserBlock)dataParserBlock 
 	completionBlock: (FDRequestClientTaskCompletionBlock)completionBlock
 {
-	FDRequestClientTask *requestClientTask = [_requestClient loadURLRequest: urlRequest 
+	FDRequestClientTask *requestClientTask = [_requestClient loadHTTPRequest: httpRequest 
 		authorizationBlock: authorizationBlock 
 		progressBlock: progressBlock 
 		dataParserBlock: dataParserBlock 
