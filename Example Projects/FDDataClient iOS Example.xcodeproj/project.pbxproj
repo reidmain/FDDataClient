@@ -17,22 +17,14 @@
 		27C55CB518A5B35600BA7800 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 27C55CB418A5B35600BA7800 /* InfoPlist.strings */; };
 		27C55CB718A5B35600BA7800 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 27C55CB618A5B35600BA7800 /* iTunesArtwork */; };
 		27C55CB918A5B35600BA7800 /* iTunesArtwork@2x in Resources */ = {isa = PBXBuildFile; fileRef = 27C55CB818A5B35600BA7800 /* iTunesArtwork@2x */; };
-		27C55CEB18A5B45500BA7800 /* libFDDataClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C55CE618A5B3E800BA7800 /* libFDDataClient.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		27C55CE518A5B3E800BA7800 /* PBXContainerItemProxy */ = {
+		277A38D118CE61D0007FA15A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 27C55CE018A5B3E800BA7800 /* FDDataClient Static Library.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 27D82F5318A5B083004A9D05;
-			remoteInfo = FDDataClient;
-		};
-		27C55CE918A5B44F00BA7800 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 27C55CE018A5B3E800BA7800 /* FDDataClient Static Library.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 27D82F5218A5B083004A9D05;
 			remoteInfo = FDDataClient;
 		};
 /* End PBXContainerItemProxy section */
@@ -53,8 +45,7 @@
 		27C55CB418A5B35600BA7800 /* InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		27C55CB618A5B35600BA7800 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		27C55CB818A5B35600BA7800 /* iTunesArtwork@2x */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iTunesArtwork@2x"; sourceTree = "<group>"; };
-		27C55CE018A5B3E800BA7800 /* FDDataClient Static Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "FDDataClient Static Library.xcodeproj"; path = "../../../Static Library Project/FDDataClient Static Library.xcodeproj"; sourceTree = "<group>"; };
-		27C55CEC18A5B46A00BA7800 /* libFDRequestClient.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFDRequestClient.a; path = "../Vendors/FDRequestClient/Static Library Project/build/Debug-iphoneos/libFDRequestClient.a"; sourceTree = "<group>"; };
+		27C55CE018A5B3E800BA7800 /* FDDataClient Static Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "FDDataClient Static Library.xcodeproj"; path = "../../Static Library Project/FDDataClient Static Library.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,13 +57,20 @@
 				27C55CA018A5B35600BA7800 /* CoreGraphics.framework in Frameworks */,
 				27C55CA218A5B35600BA7800 /* QuartzCore.framework in Frameworks */,
 				27C55CA418A5B35600BA7800 /* UIKit.framework in Frameworks */,
-				27C55CEB18A5B45500BA7800 /* libFDDataClient.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		277A38CE18CE61D0007FA15A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				277A38D218CE61D0007FA15A /* libFDDataClient.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		27C55C9118A5B35600BA7800 = {
 			isa = PBXGroup;
 			children = (
@@ -94,7 +92,6 @@
 		27C55C9C18A5B35600BA7800 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				27C55CEC18A5B46A00BA7800 /* libFDRequestClient.a */,
 				27C55C9D18A5B35600BA7800 /* Foundation.framework */,
 				27C55C9F18A5B35600BA7800 /* CoreGraphics.framework */,
 				27C55CA118A5B35600BA7800 /* QuartzCore.framework */,
@@ -131,7 +128,7 @@
 				27C55CE018A5B3E800BA7800 /* FDDataClient Static Library.xcodeproj */,
 			);
 			name = Vendors;
-			path = "FDDataClient iOS Example/Vendors";
+			path = "FDDataClient iOS Example";
 			sourceTree = "<group>";
 		};
 		27C55CAD18A5B35600BA7800 /* Shared */ = {
@@ -377,14 +374,6 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
-		27C55CE118A5B3E800BA7800 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				27C55CE618A5B3E800BA7800 /* libFDDataClient.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -399,7 +388,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				27C55CEA18A5B44F00BA7800 /* PBXTargetDependency */,
 			);
 			name = "FDDataClient iOS Example";
 			productName = "FDDataClient iOS Example";
@@ -413,7 +401,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = FD;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 			};
 			buildConfigurationList = 27C55C9518A5B35600BA7800 /* Build configuration list for PBXProject "FDDataClient iOS Example" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -427,7 +415,7 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 27C55CE118A5B3E800BA7800 /* Products */;
+					ProductGroup = 277A38CE18CE61D0007FA15A /* Products */;
 					ProjectRef = 27C55CE018A5B3E800BA7800 /* FDDataClient Static Library.xcodeproj */;
 				},
 			);
@@ -439,11 +427,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		27C55CE618A5B3E800BA7800 /* libFDDataClient.a */ = {
+		277A38D218CE61D0007FA15A /* libFDDataClient.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libFDDataClient.a;
-			remoteRef = 27C55CE518A5B3E800BA7800 /* PBXContainerItemProxy */;
+			remoteRef = 277A38D118CE61D0007FA15A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -474,20 +462,11 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		27C55CEA18A5B44F00BA7800 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = FDDataClient;
-			targetProxy = 27C55CE918A5B44F00BA7800 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
 		27C55CD918A5B35600BA7800 /* Ad Hoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_IDENTIFIER = "com.1414degrees.FDDataClient-iOS-Example.adhoc";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -526,7 +505,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_IDENTIFIER = "com.1414degrees.FDDataClient-iOS-Example";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -566,7 +544,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_IDENTIFIER = "com.1414degrees.FDDataClient-iOS-Example.debug";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
