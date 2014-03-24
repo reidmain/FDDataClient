@@ -244,6 +244,12 @@
 						{
 							transformedObject = [_dateFormatter dateFromString: transformedObject];
 						}
+						// If the property being set is a NSString and the transformed object is a NSNumber convert the number to a string.
+						else if ([declaredProperty.type isSubclassOfClass: [NSString class]] == YES 
+							&& [transformedObject isKindOfClass: [NSNumber class]] == YES)
+						{
+							transformedObject = [transformedObject stringValue];
+						}
 						
 						// If the transformed object is not the same type as the property that is being set stop parsing this remote key path.
 						if (declaredProperty.type != nil 
