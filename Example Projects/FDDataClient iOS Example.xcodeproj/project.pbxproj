@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		273AFE4918E3734700BADA79 /* libFDDataClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 277A38D218CE61D0007FA15A /* libFDDataClient.a */; };
 		27C55C9E18A5B35600BA7800 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C55C9D18A5B35600BA7800 /* Foundation.framework */; };
 		27C55CA018A5B35600BA7800 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C55C9F18A5B35600BA7800 /* CoreGraphics.framework */; };
 		27C55CA218A5B35600BA7800 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C55CA118A5B35600BA7800 /* QuartzCore.framework */; };
@@ -20,6 +21,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		273AFE4618E3734300BADA79 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27C55CE018A5B3E800BA7800 /* FDDataClient Static Library.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 27D82F5218A5B083004A9D05;
+			remoteInfo = FDDataClient;
+		};
 		277A38D118CE61D0007FA15A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 27C55CE018A5B3E800BA7800 /* FDDataClient Static Library.xcodeproj */;
@@ -57,6 +65,7 @@
 				27C55CA018A5B35600BA7800 /* CoreGraphics.framework in Frameworks */,
 				27C55CA218A5B35600BA7800 /* QuartzCore.framework in Frameworks */,
 				27C55CA418A5B35600BA7800 /* UIKit.framework in Frameworks */,
+				273AFE4918E3734700BADA79 /* libFDDataClient.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,6 +397,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				273AFE4718E3734300BADA79 /* PBXTargetDependency */,
 			);
 			name = "FDDataClient iOS Example";
 			productName = "FDDataClient iOS Example";
@@ -461,6 +471,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		273AFE4718E3734300BADA79 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FDDataClient;
+			targetProxy = 273AFE4618E3734300BADA79 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		27C55CD918A5B35600BA7800 /* Ad Hoc */ = {
