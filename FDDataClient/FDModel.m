@@ -53,6 +53,32 @@
 	return nil;
 }
 
++ (NSValueTransformer *)transformerForKey: (NSString *)key
+{
+	// Check if the class implements a method called "<key>Transformer" and return the result if it exists.
+	NSString *selectorName = [NSString stringWithFormat: @"%@Transformer", 
+		key];
+	SEL selector = NSSelectorFromString(selectorName);
+	
+	if ([self respondsToSelector: selector] == YES)
+	{
+		__unsafe_unretained NSValueTransformer *transformer = nil;
+		
+		NSMethodSignature *methodSignature = [self methodSignatureForSelector: selector];
+		NSInvocation *invocation = [NSInvocation invocationWithMethodSignature: methodSignature];
+		invocation.target = self;
+		invocation.selector = selector;
+		
+		[invocation invoke];
+
+		[invocation getReturnValue:&transformer];
+		
+		return transformer;
+	}
+	
+	return nil;
+}
+
 
 #pragma mark - Overridden Methods
 

@@ -216,13 +216,25 @@
 				{
 					// Load the object for the remote key path and attempt to transform it to a local model.
 					id remoteObject = [object valueForKeyPath: remoteKeyPath];
-					id transformedObject = [self _transformObjectToLocalModels: remoteObject];
+					
+					// If a local transformer has been defined use it instead of attempting to transform the object into local models.
+					id transformedObject = nil;
+					
+					NSValueTransformer *valueTransformer = [modelClass transformerForKey: localKeyPath];
+					if (valueTransformer != nil)
+					{
+						transformedObject = [valueTransformer transformedValue: remoteObject];
+					}
+					else
+					{
+						transformedObject = [self _transformObjectToLocalModels: remoteObject];
+					}
 					
 					// If the transformed object is nil do not attempt to set it on the model because it could be erasing data that already exists.
 					if (transformedObject != nil)
 					{
 						// Get the property info on the property that is about to be set.
-						FDDeclaredProperty *declaredProperty = [modelClass declaredPropertyForName: localKeyPath];
+						FDDeclaredProperty *declaredProperty = [modelClass declaredPropertyForKeyPath: localKeyPath];
 						
 						// If the property being set is of type FDModel and the transformed object is a NSString or NSValue it is possible that the string is the unique identifier for the model. Check and see if an instance of model class with that identifier exists.
 						if ([declaredProperty.type isSubclassOfClass: [FDModel class]] == YES 

@@ -21,6 +21,7 @@
 
 + (NSDictionary *)remoteKeyPathsToLocalKeyPaths;
 + (NSString *)remoteKeyPathForUniqueIdentifier;
++ (NSValueTransformer *)transformerForKey: (NSString *)key;
 
 
 #pragma mark - Instance Methods
