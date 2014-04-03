@@ -14,7 +14,7 @@
 @required
 
 // The class returned from this method must be a subclass of FDModel.
-- (Class)modelClassForDictionary: (NSDictionary *)dictionary;
+- (Class)modelClassForIdentifier: (id)identifier;
 
 
 #pragma mark - Optional Methods

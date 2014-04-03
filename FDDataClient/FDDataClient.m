@@ -168,7 +168,7 @@
 	else if ([object isKindOfClass: [NSDictionary class]] == YES)
 	{
 		// Ask the delegate for the model class represented by the dictionary.
-		Class modelClass = [_delegate modelClassForDictionary: object];
+		Class modelClass = [_delegate modelClassForIdentifier: object];
 		
 		// If the delegate did not return a model class iterate over all the keys and objects and attempt to convert them to local models.
 		if (modelClass == nil)
@@ -193,7 +193,7 @@
 			{
 				[NSException raise: NSInternalInconsistencyException 
 					format: @"The %@ method on %@ must return a subclass of FDModel", 
-						NSStringFromSelector(@selector(modelClassForDictionary:)),
+						NSStringFromSelector(@selector(modelClassForIdentifier:)),
 						_delegate
 						];
 				
@@ -241,7 +241,22 @@
 							&& ([transformedObject isKindOfClass: [NSString class]] == YES 
 								|| [transformedObject isKindOfClass: [NSValue class]] == YES))
 						{
-							transformedObject = [self _modelForClass: declaredProperty.type 
+							// Ask the delegate for the model class represented by the string.
+							Class modelClass = [_delegate modelClassForIdentifier: transformedObject];
+							
+							// Ensure the model class is a subclass of FDModel.
+							if ([modelClass isSubclassOfClass: [FDModel class]] == NO)
+							{
+								[NSException raise: NSInternalInconsistencyException 
+									format: @"The %@ method on %@ must return a subclass of FDModel", 
+										NSStringFromSelector(@selector(modelClassForIdentifier:)),
+										_delegate
+										];
+								
+								return;
+							}
+							
+							transformedObject = [self _modelForClass: modelClass 
 								withIdentifier: transformedObject];
 						}
 						// If the property being set is a NSURL and the transformed object is a NSString convert the string to a NSURL object.
