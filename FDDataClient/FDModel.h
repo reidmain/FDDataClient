@@ -11,7 +11,7 @@
 
 #pragma mark - Properties
 
-@property (nonatomic, copy) NSString *identifier;
+@property (nonatomic, copy) id identifier;
 
 
 #pragma mark - Constructors
