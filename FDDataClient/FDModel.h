@@ -19,8 +19,8 @@
 
 #pragma mark - Static Methods
 
-+ (NSDictionary *)remoteKeyPathsToLocalKeyPaths;
 + (NSString *)remoteKeyPathForUniqueIdentifier;
++ (NSDictionary *)remoteKeyPathsToLocalKeyPaths;
 + (NSValueTransformer *)transformerForKey: (NSString *)key;
 
 

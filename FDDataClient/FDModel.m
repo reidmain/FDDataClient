@@ -41,13 +41,13 @@
 
 #pragma mark - Public Methods
 
-+ (NSDictionary *)remoteKeyPathsToLocalKeyPaths
++ (NSString *)remoteKeyPathForUniqueIdentifier
 {
 	// This method should be overridden by all subclasses.
 	return nil;
 }
 
-+ (NSString *)remoteKeyPathForUniqueIdentifier
++ (NSDictionary *)remoteKeyPathsToLocalKeyPaths
 {
 	// This method should be overridden by all subclasses.
 	return nil;
