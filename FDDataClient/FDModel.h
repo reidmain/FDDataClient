@@ -22,6 +22,9 @@
 + (NSString *)remoteKeyPathForUniqueIdentifier;
 + (NSDictionary *)remoteKeyPathsToLocalKeyPaths;
 + (NSValueTransformer *)transformerForKey: (NSString *)key;
+// The class returned from this method must be a subclass of FDModel.
++ (Class)modelClassForDictionary: (NSDictionary *)dictionary 
+	withRemoteKeyPath: (NSString *)remoteKeyPath;
 
 
 #pragma mark - Instance Methods

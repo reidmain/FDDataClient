@@ -11,6 +11,9 @@
 
 - (FDModel *)_modelForClass: (Class)modelClass 
 	withIdentifier: (id)identifier;
+- (id)_transformObjectToLocalModels: (id)object 
+	parentModelClass: (Class)parentModelClass 
+	parentRemoteKeypath: (NSString *)parentRemoteKeyPath;
 - (id)_transformObjectToLocalModels: (id)object;
 
 @end
@@ -148,8 +151,21 @@
 	return model;
 }
 
-- (id)_transformObjectToLocalModels: (id)object
+- (id)_transformObjectToLocalModels: (id)object 
+	parentModelClass: (Class)parentModelClass 
+	parentRemoteKeypath: (NSString *)parentRemoteKeyPath
 {
+	// Ensure the parent model class is a subclass of FDModel.
+	if (parentModelClass != nil 
+		&& [parentModelClass isSubclassOfClass: [FDModel class]] == NO)
+	{
+		[NSException raise: NSInvalidArgumentException 
+			format: @"The parentModelClass parameter on %@ must be a subclass of FDModel", 
+				NSStringFromSelector(_cmd)];
+		
+		return object;
+	}
+	
 	// If the object is an array attempt to transform each element of the array.
 	if ([object isKindOfClass: [NSArray class]] == YES)
 	{
@@ -157,7 +173,9 @@
 		
 		[object enumerateObjectsUsingBlock: ^(id objectInArray, NSUInteger index, BOOL *stop)
 			{
-				id transformedObject = [self _transformObjectToLocalModels: objectInArray];
+				id transformedObject = [self _transformObjectToLocalModels: objectInArray 
+					parentModelClass: parentModelClass 
+					parentRemoteKeypath: parentRemoteKeyPath];
 				
 				[array addObject: transformedObject];
 			}];
@@ -170,7 +188,14 @@
 		// Ask the delegate for the model class represented by the dictionary.
 		Class modelClass = [_delegate modelClassForIdentifier: object];
 		
-		// If the delegate did not return a model class iterate over all the keys and objects and attempt to convert them to local models.
+		// If the delegate did not return a model class ask the parent model class if it understands the dictionary.
+		if (modelClass == nil)
+		{
+			modelClass = [parentModelClass modelClassForDictionary: object 
+				withRemoteKeyPath: parentRemoteKeyPath];
+		}
+		
+		// If there is no model class iterate over all the keys and objects and attempt to convert them to local models.
 		if (modelClass == nil)
 		{
 			NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithCapacity: [object count]];
@@ -192,10 +217,8 @@
 			if ([modelClass isSubclassOfClass: [FDModel class]] == NO)
 			{
 				[NSException raise: NSInternalInconsistencyException 
-					format: @"The %@ method on %@ must return a subclass of FDModel", 
-						NSStringFromSelector(@selector(modelClassForIdentifier:)),
-						_delegate
-						];
+					format: @"The model class for the following dictionary is not a subclass of FDModel:\n%@", 
+						object];
 				
 				return object;
 			}
@@ -227,7 +250,9 @@
 					}
 					else
 					{
-						transformedObject = [self _transformObjectToLocalModels: remoteObject];
+						transformedObject = [self _transformObjectToLocalModels: remoteObject 
+							parentModelClass: modelClass 
+							parentRemoteKeypath: remoteKeyPath];
 					}
 					
 					// If the transformed object is nil do not attempt to set it on the model because it could be erasing data that already exists.
@@ -248,10 +273,8 @@
 							if ([modelClass isSubclassOfClass: [FDModel class]] == NO)
 							{
 								[NSException raise: NSInternalInconsistencyException 
-									format: @"The %@ method on %@ must return a subclass of FDModel", 
-										NSStringFromSelector(@selector(modelClassForIdentifier:)),
-										_delegate
-										];
+									format: @"The model class for '%@' is not a subclass of FDModel.", 
+										transformedObject];
 								
 								return;
 							}
@@ -309,6 +332,15 @@
 	
 	// Return the object if it could not be transformed.
 	return object;
+}
+
+- (id)_transformObjectToLocalModels: (id)object
+{
+	id transformedObject = [self _transformObjectToLocalModels: object 
+		parentModelClass: nil 
+		parentRemoteKeypath: nil];
+	
+	return transformedObject;
 }
 
 

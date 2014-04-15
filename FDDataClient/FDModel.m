@@ -79,6 +79,13 @@
 	return nil;
 }
 
++ (Class)modelClassForDictionary: (NSDictionary *)dictionary 
+	withRemoteKeyPath: (NSString *)remoteKeyPath
+{
+	// This method can be overridden by all subclasses.
+	return nil;
+}
+
 
 #pragma mark - Overridden Methods
 
