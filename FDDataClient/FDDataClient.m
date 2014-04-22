@@ -240,6 +240,12 @@
 					// Load the object for the remote key path and attempt to transform it to a local model.
 					id remoteObject = [object valueForKeyPath: remoteKeyPath];
 					
+					// If the remote object is null ignore it and move onto the next item. There is no point to deal with a null object because it could only delete data that currently exists.
+					if (FDIsNull(remoteObject) == YES)
+					{
+						return;
+					}
+					
 					// If a local transformer has been defined use it instead of attempting to transform the object into local models.
 					id transformedObject = nil;
 					
