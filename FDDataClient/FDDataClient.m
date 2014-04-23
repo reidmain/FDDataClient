@@ -177,7 +177,10 @@
 					parentModelClass: parentModelClass 
 					parentRemoteKeypath: parentRemoteKeyPath];
 				
-				[array addObject: transformedObject];
+				if (FDIsNull(transformedObject) == NO)
+				{
+					[array addObject: transformedObject];
+				}
 			}];
 		
 		return array;
@@ -187,6 +190,12 @@
 	{
 		// Ask the delegate for the model class represented by the dictionary.
 		Class modelClass = [_delegate modelClassForIdentifier: object];
+		
+		// If the model class is NSNull ignore the dictionary entirely.
+		if (modelClass == [NSNull class])
+		{
+			return nil;
+		}
 		
 		// If the delegate did not return a model class ask the parent model class if it understands the dictionary.
 		if (modelClass == nil)
@@ -272,8 +281,14 @@
 							&& ([transformedObject isKindOfClass: [NSString class]] == YES 
 								|| [transformedObject isKindOfClass: [NSValue class]] == YES))
 						{
-							// Ask the delegate for the model class represented by the string.
+							// Ask the delegate for the model class represented by the object.
 							Class modelClass = [_delegate modelClassForIdentifier: transformedObject];
+							
+							// If the model class is NSNull ignore the object entirely.
+							if (modelClass == [NSNull class])
+							{
+								return;
+							}
 							
 							// Ensure the model class is a subclass of FDModel.
 							if ([modelClass isSubclassOfClass: [FDModel class]] == NO)
