@@ -8,6 +8,11 @@
 #pragma mark - Enumerations
 
 
+#pragma mark - Type Definitions
+
+typedef Class (^FDDataClientModelClassBlock)(NSString *parentKey, NSDictionary *dictionary);
+
+
 #pragma mark - Class Interface
 
 @interface FDDataClient : NSObject
@@ -32,6 +37,7 @@
 	authorizationBlock: (FDRequestClientTaskAuthorizationBlock)authorizationBlock 
 	progressBlock: (FDRequestClientTaskProgressBlock)progressBlock 
 	dataParserBlock: (FDRequestClientTaskDataParserBlock)dataParserBlock 
+	modelClassBlock: (FDDataClientModelClassBlock)modelClassBlock 
 	completionBlock: (FDRequestClientTaskCompletionBlock)completionBlock;
 
 

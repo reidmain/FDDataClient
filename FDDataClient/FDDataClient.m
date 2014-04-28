@@ -12,9 +12,9 @@
 - (FDModel *)_modelForClass: (Class)modelClass 
 	withIdentifier: (id)identifier;
 - (id)_transformObjectToLocalModels: (id)object 
+	modelClassBlock: (FDDataClientModelClassBlock)modelClassBlock 
 	parentModelClass: (Class)parentModelClass 
 	parentRemoteKeypath: (NSString *)parentRemoteKeyPath;
-- (id)_transformObjectToLocalModels: (id)object;
 
 @end
 
@@ -74,6 +74,7 @@
 	authorizationBlock: (FDRequestClientTaskAuthorizationBlock)authorizationBlock 
 	progressBlock: (FDRequestClientTaskProgressBlock)progressBlock 
 	dataParserBlock: (FDRequestClientTaskDataParserBlock)dataParserBlock 
+	modelClassBlock: (FDDataClientModelClassBlock)modelClassBlock 
 	completionBlock: (FDRequestClientTaskCompletionBlock)completionBlock
 {
 	FDRequestClientTask *requestClientTask = [_requestClient loadHTTPRequest: httpRequest 
@@ -82,7 +83,10 @@
 		dataParserBlock: dataParserBlock 
 		transformBlock: ^id(id object)
 			{
-				id transformedObject = [self _transformObjectToLocalModels: object];
+				id transformedObject = [self _transformObjectToLocalModels: object 
+					modelClassBlock: modelClassBlock 
+					parentModelClass: nil 
+					parentRemoteKeypath: nil];
 				
 				return transformedObject;
 			} 
@@ -152,6 +156,7 @@
 }
 
 - (id)_transformObjectToLocalModels: (id)object 
+	modelClassBlock: (FDDataClientModelClassBlock)modelClassBlock 
 	parentModelClass: (Class)parentModelClass 
 	parentRemoteKeypath: (NSString *)parentRemoteKeyPath
 {
@@ -174,6 +179,7 @@
 		[object enumerateObjectsUsingBlock: ^(id objectInArray, NSUInteger index, BOOL *stop)
 			{
 				id transformedObject = [self _transformObjectToLocalModels: objectInArray 
+					modelClassBlock: modelClassBlock 
 					parentModelClass: parentModelClass 
 					parentRemoteKeypath: parentRemoteKeyPath];
 				
@@ -188,20 +194,30 @@
 	// If the object is a dictionary attempt to transform it to a local model.
 	else if ([object isKindOfClass: [NSDictionary class]] == YES)
 	{
-		// Ask the delegate for the model class represented by the dictionary.
-		Class modelClass = [_delegate modelClassForIdentifier: object];
+		// Ask the block for the model class represented by the dictionary.
+		Class modelClass = nil;
+		if (modelClassBlock != nil)
+		{
+			modelClass = modelClassBlock(parentRemoteKeyPath, object);
+		}
+		
+		// If the block did not return a model class ask the parent model class if it understands the dictionary.
+		if (modelClass == nil)
+		{
+			modelClass = [parentModelClass modelClassForDictionary: object 
+				withRemoteKeyPath: parentRemoteKeyPath];
+		}
+		
+		// If the parent model class did not return a model class ask the delegate for the model class represented by the dictionary.
+		if (modelClass == nil)
+		{
+			modelClass = [_delegate modelClassForIdentifier: object];
+		}
 		
 		// If the model class is NSNull ignore the dictionary entirely.
 		if (modelClass == [NSNull class])
 		{
 			return nil;
-		}
-		
-		// If the delegate did not return a model class ask the parent model class if it understands the dictionary.
-		if (modelClass == nil)
-		{
-			modelClass = [parentModelClass modelClassForDictionary: object 
-				withRemoteKeyPath: parentRemoteKeyPath];
 		}
 		
 		// If there is no model class iterate over all the keys and objects and attempt to convert them to local models.
@@ -211,7 +227,10 @@
 			
 			[object enumerateKeysAndObjectsUsingBlock: ^(id key, id objectInDictionary, BOOL *stop)
 				{
-					id transformedObject = [self _transformObjectToLocalModels: objectInDictionary];
+					id transformedObject = [self _transformObjectToLocalModels: objectInDictionary 
+						modelClassBlock: modelClassBlock 
+						parentModelClass: parentModelClass 
+						parentRemoteKeypath: key];
 					
 					[dictionary setValue: transformedObject 
 						forKey: key];
@@ -266,6 +285,7 @@
 					else
 					{
 						transformedObject = [self _transformObjectToLocalModels: remoteObject 
+							modelClassBlock: modelClassBlock 
 							parentModelClass: modelClass 
 							parentRemoteKeypath: remoteKeyPath];
 					}
@@ -353,15 +373,6 @@
 	
 	// Return the object if it could not be transformed.
 	return object;
-}
-
-- (id)_transformObjectToLocalModels: (id)object
-{
-	id transformedObject = [self _transformObjectToLocalModels: object 
-		parentModelClass: nil 
-		parentRemoteKeypath: nil];
-	
-	return transformedObject;
 }
 
 
