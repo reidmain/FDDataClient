@@ -108,15 +108,18 @@
 		
 		return nil;
 	}
+	// If the identifier does not conform to the NSCopying protocol do not attempt to create anything.
 	else if (FDIsEmpty(identifier) == NO 
 		&& [identifier conformsToProtocol: @protocol(NSCopying)] == NO)
 	{
 		FDLog(FDLogLevelTrace, @"%s was called with %@ as the identifier paramter which does not implement NSCopying.", __PRETTY_FUNCTION__, identifier);
+		
+		return nil;
 	}
 	
 	FDModel *model = nil;
 	
-	// If a identifier has been passed in check if a instance of modelClass with that identifier already exists.
+	// If an identifier has been passed in check if an instance of modelClass with that identifier already exists.
 	if (FDIsEmpty(identifier) == NO)
 	{
 		NSString *modelClassAsString = NSStringFromClass(modelClass);
@@ -139,7 +142,7 @@
 			if (model == nil)
 			{
 				model = [modelClass new];
-				[model setIdentifier: identifier];
+				model.identifier = identifier;
 				
 				[existingModels setObject: model 
 					forKey: identifier];
@@ -301,8 +304,18 @@
 							&& ([transformedObject isKindOfClass: [NSString class]] == YES 
 								|| [transformedObject isKindOfClass: [NSValue class]] == YES))
 						{
-							// Ask the delegate for the model class represented by the object.
-							Class modelClass = [_delegate modelClassForIdentifier: transformedObject];
+							// Ask the block for the model class represented by the object.
+							Class modelClass = nil;
+							if (modelClassBlock != nil)
+							{
+								modelClass = modelClassBlock(remoteKeyPath, object);
+							}
+							
+							// If the parent model class did not return a model class ask the delegate for the model class represented by the object.
+							if (modelClass == nil)
+							{
+								modelClass = [_delegate modelClassForIdentifier: object];
+							}
 							
 							// If the model class is NSNull ignore the object entirely.
 							if (modelClass == [NSNull class])
@@ -364,6 +377,42 @@
 			
 			return model;
 		}
+	}
+	else if ([object isKindOfClass: [NSString class]] == YES)
+	{
+		// Ask the block for the model class represented by the string.
+		Class modelClass = nil;
+		if (modelClassBlock != nil)
+		{
+			modelClass = modelClassBlock(parentRemoteKeyPath, object);
+		}
+		
+		// If the model class is NSNull return nothing.
+		if (modelClass == [NSNull class])
+		{
+			return nil;
+		}
+		// If the model class is nil return the string.
+		else if (modelClass == nil)
+		{
+			return object;
+		}
+		
+		// Ensure the model class is a subclass of FDModel.
+		if ([modelClass isSubclassOfClass: [FDModel class]] == NO)
+		{
+			[NSException raise: NSInternalInconsistencyException 
+				format: @"The model class for '%@' is not a subclass of FDModel.", 
+					object];
+			
+			return object;
+		}
+		
+		// Load the instance of the model for the string if it exists. Otherwise create a blank instance of the model.
+		id transformedObject = [self _modelForClass: modelClass 
+			withIdentifier: object];
+		
+		return transformedObject;
 	}
 	// If the object is a NSNull replace it with nil to prevent the inevitable crash caused by NSNull getting sent a message.
 	else if (object == [NSNull null])

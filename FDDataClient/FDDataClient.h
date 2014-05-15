@@ -10,7 +10,7 @@
 
 #pragma mark - Type Definitions
 
-typedef Class (^FDDataClientModelClassBlock)(NSString *parentKey, NSDictionary *dictionary);
+typedef Class (^FDDataClientModelClassBlock)(NSString *parentKey, id identifier);
 
 
 #pragma mark - Class Interface
