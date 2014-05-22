@@ -22,6 +22,7 @@ typedef Class (^FDDataClientModelClassBlock)(NSString *parentKey, id identifier)
 
 @property (nonatomic, weak) id<FDDataClientDelegate> delegate;
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
+@property (nonatomic, assign) BOOL logCurlCommandsToConsole;
 @property (nonatomic, copy) NSArray *headerFieldsToLog;
 
 

@@ -33,6 +33,18 @@
 
 #pragma mark - Properties
 
+- (void)setLogCurlCommandsToConsole:(BOOL)logCurlCommandsToConsole
+{
+	[_requestClient setLogCurlCommandsToConsole: logCurlCommandsToConsole];
+}
+
+- (BOOL)logCurlCommandsToConsole
+{
+	BOOL logCurlCommandsToConsole = [_requestClient logCurlCommandsToConsole];
+	
+	return logCurlCommandsToConsole;
+}
+
 - (void)setHeaderFieldsToLog: (NSArray *)headerFieldsToLog
 {
 	[_requestClient setHeaderFieldsToLog: headerFieldsToLog];
