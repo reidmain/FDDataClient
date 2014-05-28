@@ -6,7 +6,8 @@
 
 #pragma mark - Class Interface
 
-@interface FDModel : NSObject
+@interface FDModel : NSObject<
+	NSCoding>
 
 
 #pragma mark - Properties
@@ -15,6 +16,9 @@
 
 
 #pragma mark - Constructors
+
++ (instancetype)modelWithIdentifier: (id)identifier;
+- (instancetype)initWithIdentifier: (id)identifier;
 
 
 #pragma mark - Static Methods

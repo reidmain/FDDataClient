@@ -9,8 +9,6 @@
 
 @interface FDDataClient ()
 
-- (FDModel *)_modelForClass: (Class)modelClass 
-	withIdentifier: (id)identifier;
 - (id)_transformObjectToLocalModels: (id)object 
 	modelClassBlock: (FDDataClientModelClassBlock)modelClassBlock 
 	parentModelClass: (Class)parentModelClass 
@@ -27,7 +25,6 @@
 @implementation FDDataClient
 {
 	@private __strong FDRequestClient *_requestClient;
-	@private __strong NSMutableDictionary *_existingModelsByClass;
 }
 
 
@@ -70,7 +67,6 @@
 	
 	// Initialize instance variables.
 	_requestClient = [FDRequestClient new];
-	_existingModelsByClass = [NSMutableDictionary new];
 	
 	// Return initialized instance.
 	return self;
@@ -109,66 +105,6 @@
 
 
 #pragma mark - Private Methods
-
-- (FDModel *)_modelForClass: (Class)modelClass 
-	withIdentifier: (id)identifier
-{
-	// If the modelClass parameter is not a subclass of FDModel do not attempt to create anything.
-	if ([modelClass isSubclassOfClass: [FDModel class]] == NO)
-	{
-		FDLog(FDLogLevelTrace, @"%s was called with %@ as the modelClass parameter which is not a subclass of FDModel.", __PRETTY_FUNCTION__, modelClass);
-		
-		return nil;
-	}
-	// If the identifier does not conform to the NSCopying protocol do not attempt to create anything.
-	else if (FDIsEmpty(identifier) == NO 
-		&& [identifier conformsToProtocol: @protocol(NSCopying)] == NO)
-	{
-		FDLog(FDLogLevelTrace, @"%s was called with %@ as the identifier paramter which does not implement NSCopying.", __PRETTY_FUNCTION__, identifier);
-		
-		return nil;
-	}
-	
-	FDModel *model = nil;
-	
-	// If an identifier has been passed in check if an instance of modelClass with that identifier already exists.
-	if (FDIsEmpty(identifier) == NO)
-	{
-		NSString *modelClassAsString = NSStringFromClass(modelClass);
-		
-		@synchronized(self)
-		{
-			// Load the dictionary of all the existings modelClass instances. If the dictionary does not yet exist create one.
-			FDWeakMutableDictionary *existingModels = [_existingModelsByClass objectForKey: modelClassAsString];
-			if (existingModels == nil)
-			{
-				existingModels = [FDWeakMutableDictionary dictionary];
-				[_existingModelsByClass setValue: existingModels 
-					forKey: modelClassAsString];
-			}
-			
-			// Load the existing modelClass instance for the identifier.
-			model = [existingModels objectForKey: identifier];
-			
-			// If the model does not exist create a blank instance of it and assign the identifier.
-			if (model == nil)
-			{
-				model = [modelClass new];
-				model.identifier = identifier;
-				
-				[existingModels setObject: model 
-					forKey: identifier];
-			}
-		}
-	}
-	// If no identifier has been passed in create a blank instance of modelClass.
-	else
-	{
-		model = [modelClass new];
-	}
-	
-	return model;
-}
 
 - (id)_transformObjectToLocalModels: (id)object 
 	modelClassBlock: (FDDataClientModelClassBlock)modelClassBlock 
@@ -271,8 +207,7 @@
 			id identifier = [object valueForKeyPath: remoteKeyPathForUniqueIdentifier];
 			
 			// Load the instance of the model for the identifier if it exists. Otherwise create a blank instance of the model.
-			FDModel *model = [self _modelForClass: modelClass 
-				withIdentifier: identifier];
+			FDModel *model = [modelClass modelWithIdentifier: identifier];
 			
 			// Get the mapping of remote key paths to local key paths for the model class.
 			NSDictionary *keyPathsMapping = [modelClass remoteKeyPathsToLocalKeyPaths];
@@ -316,17 +251,17 @@
 							&& ([transformedObject isKindOfClass: [NSString class]] == YES 
 								|| [transformedObject isKindOfClass: [NSValue class]] == YES))
 						{
-							// Ask the block for the model class represented by the object.
+							// Ask the block for the model class represented by the transformed object.
 							Class modelClass = nil;
 							if (modelClassBlock != nil)
 							{
-								modelClass = modelClassBlock(remoteKeyPath, object);
+								modelClass = modelClassBlock(remoteKeyPath, transformedObject);
 							}
 							
-							// If the parent model class did not return a model class ask the delegate for the model class represented by the object.
+							// If the block did not return a model class ask the delegate for the model class represented by the transformed object.
 							if (modelClass == nil)
 							{
-								modelClass = [_delegate modelClassForIdentifier: object];
+								modelClass = [_delegate modelClassForIdentifier: transformedObject];
 							}
 							
 							// If the model class is NSNull ignore the object entirely.
@@ -345,8 +280,9 @@
 								return;
 							}
 							
-							transformedObject = [self _modelForClass: modelClass 
-								withIdentifier: transformedObject];
+							// If the model class is still nil use the declared property type.
+							
+							transformedObject = [modelClass modelWithIdentifier: transformedObject];
 						}
 						// If the property being set is a NSURL and the transformed object is a NSString convert the string to a NSURL object.
 						else if ([declaredProperty.type isSubclassOfClass: [NSURL class]] == YES 
@@ -421,8 +357,7 @@
 		}
 		
 		// Load the instance of the model for the string if it exists. Otherwise create a blank instance of the model.
-		id transformedObject = [self _modelForClass: modelClass 
-			withIdentifier: object];
+		id transformedObject = [modelClass modelWithIdentifier: object];
 		
 		return transformedObject;
 	}
