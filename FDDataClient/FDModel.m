@@ -52,7 +52,8 @@ static NSMutableDictionary *_existingModelsByClass;
 	return model;
 }
 
-- (id)initWithIdentifier: (id)identifier
+- (instancetype)initWithIdentifier: (id)identifier 
+	initializerBlock: (FDModelInitializerBlock)initializerBlock
 {
 	// If an identifier has been passed in check if an instance of the class with the identifier already exists.
 	if (FDIsEmpty(identifier) == NO)
@@ -85,6 +86,12 @@ static NSMutableDictionary *_existingModelsByClass;
 				
 				self.identifier = identifier;
 				
+				// Because the model was just created call the initializer block.
+				if (initializerBlock)
+				{
+					initializerBlock(self);
+				}
+				
 				[existingModels setObject: self 
 					forKey: identifier];
 			}
@@ -96,7 +103,26 @@ static NSMutableDictionary *_existingModelsByClass;
 		}
 	}
 	// If the identifier does not exist call the base initializer.
-	if ((self = [super init]) == nil)
+	else if ((self = [super init]) == nil)
+	{
+		return nil;
+	}
+	
+	// Because the model was just created call the initializer block.
+	if (initializerBlock)
+	{
+		initializerBlock(self);
+	}
+	
+	// Return initialized instance.
+	return self;
+}
+
+- (instancetype)initWithIdentifier: (id)identifier
+{
+	// Abort if base initializer fails.
+	if ((self = [self initWithIdentifier: identifier 
+		initializerBlock: nil]) == nil)
 	{
 		return nil;
 	}
@@ -105,34 +131,38 @@ static NSMutableDictionary *_existingModelsByClass;
 	return self;
 }
 
-- (id)initWithCoder: (NSCoder *)coder;
+- (id)initWithCoder: (NSCoder *)coder
 {
-	// Deecode the identifier.
+	// Decode the identifier.
 	id identifier = [coder decodeObjectForKey: @keypath(self.identifier)];
 	
 	// Abort if base initializer fails.
-	if ((self = [self initWithIdentifier: identifier]) == nil)
+	self = [self initWithIdentifier: identifier 
+		initializerBlock: ^(FDModel *model)
+		{
+			// Iterate over each declared property and attempt to decode it and set it on the model.
+			NSArray *declaredProperties = [[model class] declaredPropertiesForSubclass: [FDModel class]];
+			for (FDDeclaredProperty *declaredProperty in declaredProperties)
+			{
+				NSString *key = declaredProperty.name;
+				id value = [coder decodeObjectForKey: key];
+				
+				@try
+				{
+					[model setValue: value 
+						forKey: key];
+				}
+				// If the key on the model does not exist an exception will most likely be thrown. Catch any execeptions and log them so that any incorrect decodings will not crash the application.
+				@catch (NSException *exception)
+				{
+					FDLog(FDLogLevelInfo, @"Could not set %@ property on %@ because %@", key, [model class], [exception reason]);
+				}
+			}
+		}];
+	
+	if (self == nil)
 	{
 		return nil;
-	}
-	
-	// Iterate over each declared property and attempt to decode it and set it on the model.
-	NSArray *declaredProperties = [[self class] declaredPropertiesForSubclass: [FDModel class]];
-	for (FDDeclaredProperty *declaredProperty in declaredProperties)
-	{
-		NSString *key = declaredProperty.name;
-		id value = [coder decodeObjectForKey: key];
-		
-		@try
-		{
-			[self setValue: value 
-				forKey: key];
-		}
-		// If the key on the model does not exist an exception will most likely be thrown. Catch this exeception and log it so that any incorrect decodings will not crash the application.
-		@catch (NSException *exception)
-		{
-			FDLog(FDLogLevelInfo, @"Could not set %@ property on %@ because %@", key, [self class], [exception reason]);
-		}
 	}
 	
 	// Return initialized instance.

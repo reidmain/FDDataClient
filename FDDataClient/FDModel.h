@@ -1,4 +1,14 @@
-#pragma mark Constants
+#pragma mark Forward Declarations
+
+@class FDModel;
+
+
+#pragma mark - Constants
+
+
+#pragma mark - Type Definitions
+
+typedef void (^FDModelInitializerBlock)(FDModel *model);
 
 
 #pragma mark - Enumerations
@@ -18,6 +28,8 @@
 #pragma mark - Constructors
 
 + (instancetype)modelWithIdentifier: (id)identifier;
+- (instancetype)initWithIdentifier: (id)identifier 
+	initializerBlock: (FDModelInitializerBlock)initializerBlock;
 - (instancetype)initWithIdentifier: (id)identifier;
 
 
