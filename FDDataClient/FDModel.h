@@ -3,16 +3,10 @@
 @class FDModel;
 
 
-#pragma mark - Constants
-
-
-#pragma mark - Type Definitions
+#pragma mark Type Definitions
 
 typedef id (^FDModelInitBlock)(id identifier);
 typedef void (^FDModelCustomizationBlock)(FDModel *model);
-
-
-#pragma mark - Enumerations
 
 
 #pragma mark - Class Interface

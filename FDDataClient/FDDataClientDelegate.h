@@ -1,10 +1,7 @@
 #import "FDModel.h"
 
 
-#pragma mark Forward Declarations
-
-
-#pragma mark - Protocol
+#pragma mark Protocol
 
 @protocol FDDataClientDelegate<NSObject>
 
@@ -15,11 +12,6 @@
 
 // The class returned from this method must be a subclass of FDModel. If NSNull is returned the identifier will be ignored.
 - (Class)modelClassForIdentifier: (id)identifier;
-
-
-#pragma mark - Optional Methods
-
-@optional
 
 
 @end

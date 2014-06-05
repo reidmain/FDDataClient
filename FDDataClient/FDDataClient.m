@@ -2,10 +2,7 @@
 #import "FDModel.h"
 
 
-#pragma mark Constants
-
-
-#pragma mark - Class Extension
+#pragma mark Class Extension
 
 @interface FDDataClient ()
 
@@ -15,9 +12,6 @@
 	parentRemoteKeypath: (NSString *)parentRemoteKeyPath;
 
 @end
-
-
-#pragma mark - Class Variables
 
 
 #pragma mark - Class Definition

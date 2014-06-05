@@ -2,13 +2,7 @@
 #import "FDDataClientDelegate.h"
 
 
-#pragma mark Constants
-
-
-#pragma mark - Enumerations
-
-
-#pragma mark - Type Definitions
+#pragma mark Type Definitions
 
 typedef Class (^FDDataClientModelClassBlock)(NSString *parentKey, id identifier);
 
@@ -24,12 +18,6 @@ typedef Class (^FDDataClientModelClassBlock)(NSString *parentKey, id identifier)
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
 @property (nonatomic, assign) BOOL logCurlCommandsToConsole;
 @property (nonatomic, copy) NSArray *headerFieldsToLog;
-
-
-#pragma mark - Constructors
-
-
-#pragma mark - Static Methods
 
 
 #pragma mark - Instance Methods

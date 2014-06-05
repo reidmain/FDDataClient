@@ -2,9 +2,6 @@
 #import <FDFoundationKit/FDFoundationKit.h>
 
 
-#pragma mark Constants
-
-
 #pragma mark - Class Extension
 
 @interface FDModel ()
@@ -22,9 +19,6 @@ static NSMutableDictionary *_existingModelsByClass;
 #pragma mark - Class Definition
 
 @implementation FDModel
-
-
-#pragma mark - Properties
 
 
 #pragma mark - Constructors
@@ -258,9 +252,6 @@ static NSMutableDictionary *_existingModelsByClass;
 	
 	return saveSuccessful;
 }
-
-
-#pragma mark - Overridden Methods
 
 
 #pragma mark - Private Methods
