@@ -60,10 +60,10 @@ static NSMutableDictionary *_existingModelsByClass;
 			NSString *modelClassAsString = NSStringFromClass([self class]);
 			
 			// Load the dictionary of all the existings models for the class. If the dictionary does not yet exist create it.
-			FDWeakMutableDictionary *existingModels = [_existingModelsByClass objectForKey: modelClassAsString];
+			FDCache *existingModels = [_existingModelsByClass objectForKey: modelClassAsString];
 			if (existingModels == nil)
 			{
-				existingModels = [FDWeakMutableDictionary dictionary];
+				existingModels = [FDCache new];
 				[_existingModelsByClass setValue: existingModels 
 					forKey: modelClassAsString];
 			}
