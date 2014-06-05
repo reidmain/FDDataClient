@@ -8,7 +8,8 @@
 
 #pragma mark - Type Definitions
 
-typedef void (^FDModelInitializerBlock)(FDModel *model);
+typedef id (^FDModelInitBlock)(id identifier);
+typedef void (^FDModelCustomizationBlock)(FDModel *model);
 
 
 #pragma mark - Enumerations
@@ -29,7 +30,8 @@ typedef void (^FDModelInitializerBlock)(FDModel *model);
 
 + (instancetype)modelWithIdentifier: (id)identifier;
 - (instancetype)initWithIdentifier: (id)identifier 
-	initializerBlock: (FDModelInitializerBlock)initializerBlock;
+	initBlock: (FDModelInitBlock)initBlock 
+	customizationBlock: (FDModelCustomizationBlock)initializerBlock;
 - (instancetype)initWithIdentifier: (id)identifier;
 
 
@@ -44,6 +46,8 @@ typedef void (^FDModelInitializerBlock)(FDModel *model);
 
 
 #pragma mark - Instance Methods
+
+- (BOOL)save;
 
 
 @end

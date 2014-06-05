@@ -1,5 +1,4 @@
 #import "FDModel.h"
-#import <objc/runtime.h>
 #import <FDFoundationKit/FDFoundationKit.h>
 
 
@@ -9,6 +8,8 @@
 #pragma mark - Class Extension
 
 @interface FDModel ()
+
+- (NSString *)_modelFilePathForIdentifier: (id)identifier;
 
 @end
 
@@ -53,17 +54,18 @@ static NSMutableDictionary *_existingModelsByClass;
 }
 
 - (instancetype)initWithIdentifier: (id)identifier 
-	initializerBlock: (FDModelInitializerBlock)initializerBlock
+	initBlock: (FDModelInitBlock)initBlock 
+	customizationBlock: (FDModelCustomizationBlock)customizationBlock
 {
 	// If an identifier has been passed in check if an instance of the class with the identifier already exists.
 	if (FDIsEmpty(identifier) == NO)
 	{
-		// This code needs to be synchronized because models can be created from any thread.
-		@synchronized(self)
+		// Because models can be created on any create this code needs to be synchronized on the class being created to ensure that two threads can't create the same object at the same time.
+		@synchronized ([self class])
 		{
 			NSString *modelClassAsString = NSStringFromClass([self class]);
 			
-			// Load the dictionary of all the existings model instances. If the dictionary does not yet exist create one.
+			// Load the dictionary of all the existings models for the class. If the dictionary does not yet exist create it.
 			FDWeakMutableDictionary *existingModels = [_existingModelsByClass objectForKey: modelClassAsString];
 			if (existingModels == nil)
 			{
@@ -72,46 +74,62 @@ static NSMutableDictionary *_existingModelsByClass;
 					forKey: modelClassAsString];
 			}
 			
-			// Load the existing model instance for the identifier.
+			// Load the existing model for the identifier.
 			FDModel *model = [existingModels objectForKey: identifier];
 			
-			// If the model does not exist create a blank instance of it with the identifier.
+			// If the model does not exist call the init block.
 			if (model == nil)
 			{
-				// Abort if base initializer fails.
-				if ((self = [super init]) == nil)
+				if (initBlock != nil)
 				{
-					return nil;
+					model = initBlock(identifier);
 				}
 				
+				// If the model still does not exist after the init block create a blank instance of the model.
+				if (model == nil)
+				{
+					if ((self = [super init]) == nil)
+					{
+						return nil;
+					}
+				}
+				else
+				{
+					self = model;
+				}
+				
+				// Ensure the identifier is set on the model.
 				self.identifier = identifier;
 				
-				// Because the model was just created call the initializer block.
-				if (initializerBlock)
+				// Because the model was just created call the customization block.
+				if (customizationBlock != nil)
 				{
-					initializerBlock(self);
+					customizationBlock(self);
 				}
 				
+				// Store the model in the existing models dictionary to ensure that only one instance of the model will ever exist.
 				[existingModels setObject: self 
 					forKey: identifier];
 			}
-			// Otherwise if the model already exists assign it to self and skip the super initialization.
+			// If the model already exists assign it to self.
 			else
 			{
 				self = model;
 			}
 		}
 	}
-	// If the identifier does not exist call the base initializer.
+	// If there is no identifier create a blank instance of the model.
 	else if ((self = [super init]) == nil)
 	{
 		return nil;
 	}
-	
-	// Because the model was just created call the initializer block.
-	if (initializerBlock)
+	else	
 	{
-		initializerBlock(self);
+		// Because the model was just created call the customization block.
+		if (customizationBlock != nil)
+		{
+			customizationBlock(self);
+		}
 	}
 	
 	// Return initialized instance.
@@ -120,9 +138,23 @@ static NSMutableDictionary *_existingModelsByClass;
 
 - (instancetype)initWithIdentifier: (id)identifier
 {
-	// Abort if base initializer fails.
-	if ((self = [self initWithIdentifier: identifier 
-		initializerBlock: nil]) == nil)
+	self = [self initWithIdentifier: identifier 
+		initBlock: ^id (id identifier)
+			{
+				// If the model does not exist in memory check and see if it was saved to disk.
+				FDModel *model = nil;
+				
+				NSString *modelFilePath = [self _modelFilePathForIdentifier: identifier];
+				if (modelFilePath != nil)
+				{
+					model = [NSKeyedUnarchiver unarchiveObjectWithFile: modelFilePath];
+				}
+				
+				return model;
+			} 
+		customizationBlock: nil];
+	
+	if (self == nil)
 	{
 		return nil;
 	}
@@ -136,29 +168,29 @@ static NSMutableDictionary *_existingModelsByClass;
 	// Decode the identifier.
 	id identifier = [coder decodeObjectForKey: @keypath(self.identifier)];
 	
-	// Abort if base initializer fails.
 	self = [self initWithIdentifier: identifier 
-		initializerBlock: ^(FDModel *model)
-		{
-			// Iterate over each declared property and attempt to decode it and set it on the model.
-			NSArray *declaredProperties = [[model class] declaredPropertiesForSubclass: [FDModel class]];
-			for (FDDeclaredProperty *declaredProperty in declaredProperties)
+		initBlock: nil 
+		customizationBlock: ^(FDModel *model)
 			{
-				NSString *key = declaredProperty.name;
-				id value = [coder decodeObjectForKey: key];
-				
-				@try
+				// Iterate over each declared property and attempt to decode it and set it on the model.
+				NSArray *declaredProperties = [[model class] declaredPropertiesForSubclass: [FDModel class]];
+				for (FDDeclaredProperty *declaredProperty in declaredProperties)
 				{
-					[model setValue: value 
-						forKey: key];
+					NSString *key = declaredProperty.name;
+					id value = [coder decodeObjectForKey: key];
+					
+					@try
+					{
+						[model setValue: value 
+							forKey: key];
+					}
+					// If the key on the model does not exist an exception will most likely be thrown. Catch any execeptions and log them so that any incorrect decodings will not crash the application.
+					@catch (NSException *exception)
+					{
+						FDLog(FDLogLevelInfo, @"Could not set %@ property on %@ because %@", key, [model class], [exception reason]);
+					}
 				}
-				// If the key on the model does not exist an exception will most likely be thrown. Catch any execeptions and log them so that any incorrect decodings will not crash the application.
-				@catch (NSException *exception)
-				{
-					FDLog(FDLogLevelInfo, @"Could not set %@ property on %@ because %@", key, [model class], [exception reason]);
-				}
-			}
-		}];
+			}];
 	
 	if (self == nil)
 	{
@@ -217,11 +249,57 @@ static NSMutableDictionary *_existingModelsByClass;
 	return nil;
 }
 
+- (BOOL)save
+{
+	NSString *modelFilePath = [self _modelFilePathForIdentifier: self.identifier];
+	
+	BOOL saveSuccessful = [NSKeyedArchiver archiveRootObject: self 
+		toFile: modelFilePath];
+	
+	return saveSuccessful;
+}
+
 
 #pragma mark - Overridden Methods
 
 
 #pragma mark - Private Methods
+
+- (NSString *)_modelFilePathForIdentifier: (id)identifier
+{
+	// If no identifier was passed in a file path cannot be generated.
+	if (FDIsEmpty(identifier) == YES)
+	{
+		return nil;
+	}
+	
+	// Get the path for the cache directory.
+	NSArray *cacheDirectories = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSAllDomainsMask, YES);
+	NSString *systemCacheFolderPath = [cacheDirectories firstObject];
+	NSString *cacheFolderPath = [systemCacheFolderPath stringByAppendingPathComponent: @"FDModel Cache"];
+	
+	// Ensure the cache directory has been created.
+	NSFileManager *defaultFileManager = [NSFileManager defaultManager];
+	[defaultFileManager createDirectoryAtPath: cacheFolderPath 
+		withIntermediateDirectories: YES 
+		attributes: nil 
+		error: nil];
+	
+	// Concatenate the class and identifier together to ensure different classes that use the same identifier do not collide.
+	NSString *fullIdentifier = [NSString stringWithFormat: @"%@-%@", 
+		[self class], 
+		identifier];
+	
+	// Hash the full identifier to ensure there are no / in the file name.
+	NSString *hashedIdentifier = [fullIdentifier sha256HashString];
+	
+	// Create the file name for the model from the hash and append it to the cache directory path.
+	NSString *modelFileName = [NSString stringWithFormat: @"%@.plist", 
+		hashedIdentifier];
+	NSString *modelFilePath = [cacheFolderPath stringByAppendingPathComponent: modelFileName];
+	
+	return modelFilePath;
+}
 
 
 #pragma mark - NSCoding Methods
