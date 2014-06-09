@@ -1,18 +1,11 @@
 #import "FDModel.h"
+#import "FDArchivedFileModelStore.h"
 #import <FDFoundationKit/FDFoundationKit.h>
 
 
-#pragma mark - Class Extension
+#pragma mark Class Variables
 
-@interface FDModel ()
-
-- (NSString *)_modelFilePathForIdentifier: (id)identifier;
-
-@end
-
-
-#pragma mark - Class Variables
-
+static FDModelStore *_modelStore;
 static NSMutableDictionary *_existingModelsByClass;
 
 
@@ -33,6 +26,7 @@ static NSMutableDictionary *_existingModelsByClass;
 	// If this class has not been initialized then initalize the class variables.
 	if (classInitialized == NO)
 	{
+		_modelStore = [FDArchivedFileModelStore new];
 		_existingModelsByClass = [NSMutableDictionary new];
 		
 		classInitialized = YES;
@@ -135,13 +129,12 @@ static NSMutableDictionary *_existingModelsByClass;
 	self = [self initWithIdentifier: identifier 
 		initBlock: ^id (id identifier)
 			{
-				// If the model does not exist in memory check and see if it was saved to disk.
-				FDModel *model = nil;
+				// If the model does not exist in memory check the model store.
+				FDModel *model = [_modelStore modelForIdentifier: identifier];
 				
-				NSString *modelFilePath = [self _modelFilePathForIdentifier: identifier];
-				if (modelFilePath != nil)
+				if (model != nil)
 				{
-					model = [NSKeyedUnarchiver unarchiveObjectWithFile: modelFilePath];
+					NSLog(@"Model recovered from store.");
 				}
 				
 				return model;
@@ -243,53 +236,16 @@ static NSMutableDictionary *_existingModelsByClass;
 	return nil;
 }
 
-- (BOOL)save
++ (void)setModelStore: (FDModelStore *)modelStore
 {
-	NSString *modelFilePath = [self _modelFilePathForIdentifier: self.identifier];
-	
-	BOOL saveSuccessful = [NSKeyedArchiver archiveRootObject: self 
-		toFile: modelFilePath];
-	
-	return saveSuccessful;
+	_modelStore = modelStore;
 }
 
-
-#pragma mark - Private Methods
-
-- (NSString *)_modelFilePathForIdentifier: (id)identifier
+- (BOOL)save
 {
-	// If no identifier was passed in a file path cannot be generated.
-	if (FDIsEmpty(identifier) == YES)
-	{
-		return nil;
-	}
+	BOOL saveSuccessful = [_modelStore saveModel: self];
 	
-	// Get the path for the cache directory.
-	NSArray *cacheDirectories = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSAllDomainsMask, YES);
-	NSString *systemCacheFolderPath = [cacheDirectories firstObject];
-	NSString *cacheFolderPath = [systemCacheFolderPath stringByAppendingPathComponent: @"FDModel Cache"];
-	
-	// Ensure the cache directory has been created.
-	NSFileManager *defaultFileManager = [NSFileManager defaultManager];
-	[defaultFileManager createDirectoryAtPath: cacheFolderPath 
-		withIntermediateDirectories: YES 
-		attributes: nil 
-		error: nil];
-	
-	// Concatenate the class and identifier together to ensure different classes that use the same identifier do not collide.
-	NSString *fullIdentifier = [NSString stringWithFormat: @"%@-%@", 
-		[self class], 
-		identifier];
-	
-	// Hash the full identifier to ensure there are no / in the file name.
-	NSString *hashedIdentifier = [fullIdentifier sha256HashString];
-	
-	// Create the file name for the model from the hash and append it to the cache directory path.
-	NSString *modelFileName = [NSString stringWithFormat: @"%@.plist", 
-		hashedIdentifier];
-	NSString *modelFilePath = [cacheFolderPath stringByAppendingPathComponent: modelFileName];
-	
-	return modelFilePath;
+	return saveSuccessful;
 }
 
 

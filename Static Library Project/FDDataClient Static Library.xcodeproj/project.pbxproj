@@ -12,6 +12,10 @@
 		270343BE18A5B25D00B9C0D4 /* libFDRequestClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 270343BB18A5B24D00B9C0D4 /* libFDRequestClient.a */; };
 		270343BF18A5B27600B9C0D4 /* FDDataClient.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 270343AB18A5B0F500B9C0D4 /* FDDataClient.h */; };
 		270343C018A5B27600B9C0D4 /* FDModel.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 270343AD18A5B0F500B9C0D4 /* FDModel.h */; };
+		2705D31B19463ACF002183D8 /* FDModelStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 2705D31A19463ACF002183D8 /* FDModelStore.m */; };
+		2705D31C19463DF7002183D8 /* FDModelStore.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2705D31919463ACF002183D8 /* FDModelStore.h */; };
+		2705D31F1946400C002183D8 /* FDArchivedFileModelStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 2705D31E1946400C002183D8 /* FDArchivedFileModelStore.m */; };
+		2705D32019464016002183D8 /* FDArchivedFileModelStore.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2705D31D1946400C002183D8 /* FDArchivedFileModelStore.h */; };
 		275E7D7118A5C3D800D8BB82 /* FDDataClientDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 275E7D7018A5C37B00D8BB82 /* FDDataClientDelegate.h */; };
 		27D82F5718A5B083004A9D05 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27D82F5618A5B083004A9D05 /* Foundation.framework */; };
 /* End PBXBuildFile section */
@@ -40,6 +44,8 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				2705D32019464016002183D8 /* FDArchivedFileModelStore.h in CopyFiles */,
+				2705D31C19463DF7002183D8 /* FDModelStore.h in CopyFiles */,
 				275E7D7118A5C3D800D8BB82 /* FDDataClientDelegate.h in CopyFiles */,
 				270343BF18A5B27600B9C0D4 /* FDDataClient.h in CopyFiles */,
 				270343C018A5B27600B9C0D4 /* FDModel.h in CopyFiles */,
@@ -54,6 +60,10 @@
 		270343AD18A5B0F500B9C0D4 /* FDModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDModel.h; sourceTree = "<group>"; };
 		270343AE18A5B0F500B9C0D4 /* FDModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDModel.m; sourceTree = "<group>"; };
 		270343B618A5B24C00B9C0D4 /* FDRequestClient Static Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "FDRequestClient Static Library.xcodeproj"; path = "FDRequestClient/Static Library Project/FDRequestClient Static Library.xcodeproj"; sourceTree = "<group>"; };
+		2705D31919463ACF002183D8 /* FDModelStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDModelStore.h; sourceTree = "<group>"; };
+		2705D31A19463ACF002183D8 /* FDModelStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDModelStore.m; sourceTree = "<group>"; };
+		2705D31D1946400C002183D8 /* FDArchivedFileModelStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDArchivedFileModelStore.h; sourceTree = "<group>"; };
+		2705D31E1946400C002183D8 /* FDArchivedFileModelStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDArchivedFileModelStore.m; sourceTree = "<group>"; };
 		271DA40018C27D7C0055811A /* libFDFoundationKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFDFoundationKit.a; path = "../Vendors/FDRequestClient/Vendors/FDFoundationKit/Static Library Project/build/Debug-iphoneos/libFDFoundationKit.a"; sourceTree = "<group>"; };
 		275E7D7018A5C37B00D8BB82 /* FDDataClientDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FDDataClientDelegate.h; sourceTree = "<group>"; };
 		27D82F5318A5B083004A9D05 /* libFDDataClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFDDataClient.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,6 +90,10 @@
 				275E7D7018A5C37B00D8BB82 /* FDDataClientDelegate.h */,
 				270343AB18A5B0F500B9C0D4 /* FDDataClient.h */,
 				270343AC18A5B0F500B9C0D4 /* FDDataClient.m */,
+				2705D31919463ACF002183D8 /* FDModelStore.h */,
+				2705D31A19463ACF002183D8 /* FDModelStore.m */,
+				2705D31D1946400C002183D8 /* FDArchivedFileModelStore.h */,
+				2705D31E1946400C002183D8 /* FDArchivedFileModelStore.m */,
 				270343AD18A5B0F500B9C0D4 /* FDModel.h */,
 				270343AE18A5B0F500B9C0D4 /* FDModel.m */,
 			);
@@ -217,7 +231,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				270343B118A5B12F00B9C0D4 /* FDDataClient.m in Sources */,
+				2705D31B19463ACF002183D8 /* FDModelStore.m in Sources */,
 				270343B218A5B13100B9C0D4 /* FDModel.m in Sources */,
+				2705D31F1946400C002183D8 /* FDArchivedFileModelStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

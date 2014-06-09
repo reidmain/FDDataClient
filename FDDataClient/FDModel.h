@@ -1,3 +1,6 @@
+#import "FDModelStore.h"
+
+
 #pragma mark Forward Declarations
 
 @class FDModel;
@@ -37,6 +40,8 @@ typedef void (^FDModelCustomizationBlock)(FDModel *model);
 // The class returned from this method must be a subclass of FDModel.
 + (Class)modelClassForDictionary: (NSDictionary *)dictionary 
 	withRemoteKeyPath: (NSString *)remoteKeyPath;
+
++ (void)setModelStore: (FDModelStore *)modelStore;
 
 
 #pragma mark - Instance Methods
