@@ -164,7 +164,17 @@ static NSMutableDictionary *_existingModelsByClass;
 				for (FDDeclaredProperty *declaredProperty in declaredProperties)
 				{
 					NSString *key = declaredProperty.name;
-					id value = [coder decodeObjectForKey: key];
+					id value = nil;
+					
+					@try
+					{
+						value = [coder decodeObjectForKey: key];
+					}
+					// If the code cannot successfully decode an object an exception will be thrown. Catch any exceptions and log them so that any failed decodings will not crash the application.
+					@catch (NSException *exception)
+					{
+						FDLog(FDLogLevelInfo, @"Could not decode %@ on %@ because %@", key, [model class], [exception reason]);
+					}
 					
 					@try
 					{
