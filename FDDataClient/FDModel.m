@@ -132,11 +132,6 @@ static NSMutableDictionary *_existingModelsByClass;
 				// If the model does not exist in memory check the model store.
 				FDModel *model = [_modelStore modelForIdentifier: identifier];
 				
-				if (model != nil)
-				{
-					NSLog(@"Model recovered from store.");
-				}
-				
 				return model;
 			} 
 		customizationBlock: nil];
