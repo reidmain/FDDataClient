@@ -156,7 +156,7 @@
 		// If the parent model class did not return a model class ask the delegate for the model class represented by the dictionary.
 		if (modelClass == nil)
 		{
-			modelClass = [_delegate modelClassForIdentifier: object];
+			modelClass = [_delegate modelClassForValue: object];
 		}
 		
 		// If the model class is NSNull ignore the dictionary entirely.
@@ -255,7 +255,7 @@
 							// If the block did not return a model class ask the delegate for the model class represented by the transformed object.
 							if (modelClass == nil)
 							{
-								modelClass = [_delegate modelClassForIdentifier: transformedObject];
+								modelClass = [_delegate modelClassForValue: transformedObject];
 							}
 							
 							// If the model class is NSNull ignore the object entirely.
