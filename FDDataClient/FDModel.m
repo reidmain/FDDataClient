@@ -270,4 +270,53 @@ static NSMutableDictionary *_existingModelsByClass;
 }
 
 
+#pragma mark - Debug Methods
++ (void)_validateAndLogRemoteObject: (NSDictionary *)remoteObject
+{
+#if (LOG_UNUSED_REMOTE_KEYS || LOG_MISSING_EXPECTED_KEYS)
+    
+    static NSMutableDictionary *validatedClasses;
+    if (validatedClasses == nil)
+    {
+        validatedClasses = [NSMutableDictionary dictionary];
+    }
+    
+    BOOL validated = [[validatedClasses objectForKey: NSStringFromClass(self)] boolValue];
+    
+    if (validated == NO)
+    {
+        FDLog(FDLogLevelDebug, @"");
+        
+        NSDictionary *keyPathsMapping = [self remoteKeyPathsToLocalKeyPaths];
+
+        NSSet *remoteKeys = [NSSet setWithArray: [(NSDictionary *) remoteObject allKeys]];
+        NSSet *expectedKeys = [NSSet setWithArray: [keyPathsMapping allKeys]];
+
+#if LOG_UNUSED_REMOTE_KEYS
+        NSMutableSet *unusedKeys = [NSMutableSet setWithSet: remoteKeys];
+        [unusedKeys minusSet: expectedKeys];
+        
+        for (NSString *key in unusedKeys)
+        {
+            FDLog(FDLogLevelDebug, @"Class %@ received key \"%@\" but it is not used by the class.", NSStringFromClass(self), key);
+        }
+#endif
+        
+#if LOG_MISSING_EXPECTED_KEYS
+        NSMutableSet *missingKeys = [NSMutableSet setWithSet: expectedKeys];
+        [missingKeys minusSet: remoteKeys];
+        
+        for (NSString *key in missingKeys)
+        {
+            FDLog(FDLogLevelDebug, @"Class %@ expected key \"%@\" but it was missing from the response.", NSStringFromClass(self), key);
+        }
+#endif
+        
+        [validatedClasses setObject: @YES
+                             forKey: NSStringFromClass(self)];
+    }
+    
+#endif
+}
+
 @end

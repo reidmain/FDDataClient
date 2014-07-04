@@ -317,6 +317,10 @@
 					}
 				}];
 			
+#if DEBUG
+            [modelClass _validateAndLogRemoteObject: object];
+#endif
+
 			return model;
 		}
 	}
