@@ -65,7 +65,6 @@
 		2705D31E1946400C002183D8 /* FDArchivedFileModelStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDArchivedFileModelStore.m; sourceTree = "<group>"; };
 		275E7D7018A5C37B00D8BB82 /* FDDataClientDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FDDataClientDelegate.h; sourceTree = "<group>"; };
 		27D82F5318A5B083004A9D05 /* libFDDataClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFDDataClient.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		27D82F5A18A5B083004A9D05 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,7 +93,7 @@
 				270343AE18A5B0F500B9C0D4 /* FDModel.m */,
 			);
 			name = FDDataClient;
-			path = ../../FDDataClient;
+			path = ../FDDataClient;
 			sourceTree = "<group>";
 		};
 		270343B518A5B21E00B9C0D4 /* Vendors */ = {
@@ -103,7 +102,7 @@
 				270343B618A5B24C00B9C0D4 /* FDRequestClient Static Library.xcodeproj */,
 			);
 			name = Vendors;
-			path = ../../Vendors;
+			path = ../Vendors;
 			sourceTree = "<group>";
 		};
 		270343B718A5B24C00B9C0D4 /* Products */ = {
@@ -135,17 +134,8 @@
 			children = (
 				270343AA18A5B0F500B9C0D4 /* FDDataClient */,
 				270343B518A5B21E00B9C0D4 /* Vendors */,
-				27D82F5918A5B083004A9D05 /* Supporting Files */,
 			);
-			path = "FDDataClient Static Library";
-			sourceTree = "<group>";
-		};
-		27D82F5918A5B083004A9D05 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				27D82F5A18A5B083004A9D05 /* Prefix.pch */,
-			);
-			path = "Supporting Files";
+			name = "FDDataClient Static Library";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,8 +288,6 @@
 		27D82F7718A5B083004A9D05 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "FDDataClient Static Library/Supporting Files/Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -309,8 +297,6 @@
 		27D82F7818A5B083004A9D05 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "FDDataClient Static Library/Supporting Files/Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
