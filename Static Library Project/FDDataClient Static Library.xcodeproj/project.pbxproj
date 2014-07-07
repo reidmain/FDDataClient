@@ -120,6 +120,7 @@
 				27D82F5418A5B083004A9D05 /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		27D82F5418A5B083004A9D05 /* Products */ = {
 			isa = PBXGroup;
