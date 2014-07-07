@@ -66,8 +66,8 @@ typedef void (^FDModelCustomizationBlock)(FDModel *model);
  *  @param remoteObject An response object to validate against the expect response.
  *  @param url          The url this response was received from.
  */
-+ (void)_validateAndLogRemoteObject: (NSDictionary *)remoteObject
-    fromURL:(NSURL *)url;
++ (void)_validateAndLogRemoteObject: (NSDictionary *)remoteObject 
+	fromURL: (NSURL *)url;
 
 /**
  *  Ignore a specific set of keys when validating a response. To log ignored 
@@ -76,4 +76,6 @@ typedef void (^FDModelCustomizationBlock)(FDModel *model);
  *  @return An array of keys to ignore from the api.
  */
 + (NSArray *)ignoredRemoteKeyPaths;
+
+
 @end
