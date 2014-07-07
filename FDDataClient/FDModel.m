@@ -1,6 +1,5 @@
 #import "FDModel.h"
 #import "FDArchivedFileModelStore.h"
-#import <FDFoundationKit/FDFoundationKit.h>
 
 
 #pragma mark Class Variables
@@ -139,6 +138,7 @@ static NSMutableDictionary *_existingModelsByClass;
 	if (self == nil)
 	{
 		return nil;
+		
 	}
 	
 	// Return initialized instance.
