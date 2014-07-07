@@ -270,4 +270,77 @@ static NSMutableDictionary *_existingModelsByClass;
 }
 
 
+#pragma mark - Debug Methods
++ (void)_validateAndLogRemoteObject: (NSDictionary *)remoteObject
+    fromURL:(NSURL *)url
+{
+#if (LOG_UNUSED_REMOTE_KEYS || LOG_MISSING_EXPECTED_KEYS)
+    
+    static NSMutableDictionary *validatedClasses;
+    if (validatedClasses == nil)
+    {
+        validatedClasses = [NSMutableDictionary dictionary];
+    }
+    
+    NSString *validationKey = [NSString stringWithFormat:@"%@ (%@)", NSStringFromClass(self), url.absoluteString];
+    BOOL validated = [[validatedClasses objectForKey: validationKey] boolValue];
+    
+    if (validated == NO)
+    {
+        NSDictionary *keyPathsMapping = [self remoteKeyPathsToLocalKeyPaths];
+
+        NSSet *remoteKeys = [NSSet setWithArray: remoteObject.allKeys];
+        NSSet *ignoredKeys = [NSSet setWithArray: [self ignoredRemoteKeyPaths]];
+        NSSet *expectedKeys = [NSSet setWithArray: keyPathsMapping.allKeys];
+        
+        if (remoteKeys.count > 0 || expectedKeys.count > 0)
+        {
+            NSString *logHeader = [[NSString stringWithFormat: @"=== Validating response for %@ (From: %@) ", NSStringFromClass(self), url.absoluteString]
+                                   stringByPaddingToLength: 100 withString: @"=" startingAtIndex: 0];
+            FDLog(FDLogLevelDebug, @"");
+            FDLog(FDLogLevelDebug, @"%@", logHeader );
+        }
+
+#if LOG_UNUSED_REMOTE_KEYS
+        NSMutableSet *unusedKeys = [NSMutableSet setWithSet: remoteKeys];
+        [unusedKeys minusSet: ignoredKeys];
+        [unusedKeys minusSet: expectedKeys];
+        
+        for (NSString *key in unusedKeys)
+        {
+            FDLog(FDLogLevelDebug, @"Received key \"%@\" but it is not used by this class.", key);
+        }
+#endif
+        
+#if VERBOSE
+        NSMutableSet *ignoredUnusedKeys = [NSMutableSet setWithSet: remoteKeys];
+        [ignoredUnusedKeys intersectSet: ignoredKeys];
+        
+        for (NSString *key in ignoredUnusedKeys)
+        {
+            FDLog(FDLogLevelDebug, @"Ignoring key \"%@\".", key);
+        }
+#endif
+        
+#if LOG_MISSING_EXPECTED_KEYS
+        NSMutableSet *missingKeys = [NSMutableSet setWithSet: expectedKeys];
+        [missingKeys minusSet: remoteKeys];
+        
+        for (NSString *key in missingKeys)
+        {
+            FDLog(FDLogLevelDebug, @"Expected key \"%@\" but it was missing from the response.", key);
+        }
+#endif
+        [validatedClasses setObject: @YES
+            forKey: validationKey];
+    }
+    
+#endif
+}
+
++ (NSArray *)ignoredRemoteKeyPaths
+{
+	return nil;
+}
+
 @end
