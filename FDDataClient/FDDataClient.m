@@ -6,8 +6,9 @@
 
 @interface FDDataClient ()
 
-- (id)_transformObjectToLocalModels: (id)object 
-	modelClassBlock: (FDDataClientModelClassBlock)modelClassBlock 
+- (id)_transformObjectToLocalModels: (id)object
+    fromURL: (NSURL *)url
+	modelClassBlock: (FDDataClientModelClassBlock)modelClassBlock
 	parentModelClass: (Class)parentModelClass 
 	parentRemoteKeypath: (NSString *)parentRemoteKeyPath;
 
@@ -85,8 +86,9 @@
 		dataParserBlock: dataParserBlock 
 		transformBlock: ^id(id object)
 			{
-				id transformedObject = [self _transformObjectToLocalModels: object 
-					modelClassBlock: modelClassBlock 
+				id transformedObject = [self _transformObjectToLocalModels: object
+                    fromURL:httpRequest.url
+					modelClassBlock: modelClassBlock
 					parentModelClass: nil 
 					parentRemoteKeypath: nil];
 				
@@ -100,10 +102,12 @@
 
 #pragma mark - Private Methods
 
-- (id)_transformObjectToLocalModels: (id)object 
-	modelClassBlock: (FDDataClientModelClassBlock)modelClassBlock 
-	parentModelClass: (Class)parentModelClass 
-	parentRemoteKeypath: (NSString *)parentRemoteKeyPath
+- (id)_transformObjectToLocalModels: (id)object
+                            fromURL: (NSURL *)url
+                    modelClassBlock: (FDDataClientModelClassBlock)modelClassBlock
+                   parentModelClass: (Class)parentModelClass
+                parentRemoteKeypath: (NSString *)parentRemoteKeyPath
+
 {
 	// Ensure the parent model class is a subclass of FDModel.
 	if (parentModelClass != nil 
@@ -123,8 +127,9 @@
 		
 		[object enumerateObjectsUsingBlock: ^(id objectInArray, NSUInteger index, BOOL *stop)
 			{
-				id transformedObject = [self _transformObjectToLocalModels: objectInArray 
-					modelClassBlock: modelClassBlock 
+				id transformedObject = [self _transformObjectToLocalModels: objectInArray
+                    fromURL:url
+					modelClassBlock: modelClassBlock
 					parentModelClass: parentModelClass 
 					parentRemoteKeypath: parentRemoteKeyPath];
 				
@@ -172,8 +177,9 @@
 			
 			[object enumerateKeysAndObjectsUsingBlock: ^(id key, id objectInDictionary, BOOL *stop)
 				{
-					id transformedObject = [self _transformObjectToLocalModels: objectInDictionary 
-						modelClassBlock: modelClassBlock 
+					id transformedObject = [self _transformObjectToLocalModels: objectInDictionary
+                        fromURL:url
+						modelClassBlock: modelClassBlock
 						parentModelClass: parentModelClass 
 						parentRemoteKeypath: key];
 					
@@ -228,8 +234,9 @@
 					}
 					else
 					{
-						transformedObject = [self _transformObjectToLocalModels: remoteObject 
-							modelClassBlock: modelClassBlock 
+						transformedObject = [self _transformObjectToLocalModels: remoteObject
+                            fromURL:url
+							modelClassBlock: modelClassBlock
 							parentModelClass: modelClass 
 							parentRemoteKeypath: remoteKeyPath];
 					}
@@ -318,7 +325,8 @@
 				}];
 			
 #if DEBUG
-            [modelClass _validateAndLogRemoteObject: object];
+            [modelClass _validateAndLogRemoteObject: object
+                fromURL:url];
 #endif
 
 			return model;

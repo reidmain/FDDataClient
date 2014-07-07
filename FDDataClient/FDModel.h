@@ -9,6 +9,11 @@
     #define LOG_MISSING_EXPECTED_KEYS 0
 #endif
 
+#ifndef VERBOSE
+    #define VERBOSE 0
+#endif
+
+
 #pragma mark Type Definitions
 
 typedef id (^FDModelInitBlock)(id identifier);
@@ -59,7 +64,16 @@ typedef void (^FDModelCustomizationBlock)(FDModel *model);
  *
  *
  *  @param remoteObject An response object to validate against the expect response.
+ *  @param url          The url this response was received from.
  */
-+ (void)_validateAndLogRemoteObject: (NSDictionary *)remoteObject;
++ (void)_validateAndLogRemoteObject: (NSDictionary *)remoteObject
+    fromURL:(NSURL *)url;
 
+/**
+ *  Ignore a specific set of keys when validating a response. To log ignored 
+ *  keys build with VERBOSE.
+ *
+ *  @return An array of keys to ignore from the api.
+ */
++ (NSArray *)ignoredRemoteKeyPaths;
 @end
