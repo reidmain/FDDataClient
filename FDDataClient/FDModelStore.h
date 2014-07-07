@@ -1,3 +1,6 @@
+@import Foundation;
+
+
 #pragma mark Forward Declarations
 
 @class FDModel;

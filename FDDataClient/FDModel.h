@@ -1,11 +1,6 @@
 #import "FDModelStore.h"
 
 
-#pragma mark Forward Declarations
-
-@class FDModel;
-
-
 #pragma mark Type Definitions
 
 typedef id (^FDModelInitBlock)(id identifier);

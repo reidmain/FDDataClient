@@ -1,7 +1,6 @@
 #import "FDModel.h"
 
 
-
 #pragma mark Type Definitions
 
 /**

@@ -2,7 +2,7 @@
 #import "FDDataClientDelegate.h"
 
 
-#pragma mark - Class Interface
+#pragma mark Class Interface
 
 @interface FDDataClient : NSObject
 
