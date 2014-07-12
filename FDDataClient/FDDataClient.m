@@ -284,6 +284,31 @@
 							
 							transformedObject = [modelClass modelWithIdentifier: transformedObject];
 						}
+						// If the property being set is of type FDModel and the remote object is a NSDictionary attempt to transform the dictionary into a instance of the FDModel class.
+						else if ([declaredProperty.type isSubclassOfClass: [FDModel class]] == YES 
+							&& [remoteObject isKindOfClass: [NSDictionary class]] == YES)
+						{
+							transformedObject = [self _transformObjectToLocalModels: transformedObject 
+								fromURL: url 
+								modelClassBlock: ^Class(NSString *parentKey, id value)
+									{
+										if (parentKey == remoteKeyPath)
+										{
+											return declaredProperty.type;
+										}
+										
+										if (modelClassBlock != nil)
+										{
+											Class modelClass = modelClassBlock(remoteKeyPath, transformedObject);
+											
+											return modelClass;
+										}
+										
+										return nil;
+									} 
+								parentModelClass: parentModelClass 
+								parentRemoteKeypath: remoteKeyPath];
+						}
 						// If the property being set is a NSURL and the transformed object is a NSString convert the string to a NSURL object.
 						else if ([declaredProperty.type isSubclassOfClass: [NSURL class]] == YES 
 							&& [transformedObject isKindOfClass: [NSString class]] == YES)
