@@ -2,11 +2,11 @@
 #import "FDModelStore.h"
 
 #ifndef LOG_UNUSED_REMOTE_KEYS
-    #define LOG_UNUSED_REMOTE_KEYS 1
+    #define LOG_UNUSED_REMOTE_KEYS 0
 #endif
 
 #ifndef LOG_MISSING_EXPECTED_KEYS
-    #define LOG_MISSING_EXPECTED_KEYS 1
+    #define LOG_MISSING_EXPECTED_KEYS 0
 #endif
 
 #ifndef VERBOSE
