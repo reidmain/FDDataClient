@@ -193,6 +193,41 @@ static NSMutableDictionary *_existingModelsByClass;
 	return self;
 }
 
+- (id)copyWithZone:(NSZone *)zone
+{
+	FDModel *model = [[self class] new];
+	
+	// Iterate over each declared property and attempt to set it on the model.
+	NSArray *declaredProperties = [[model class] declaredPropertiesForSubclass: [FDModel class]];
+	for (FDDeclaredProperty *declaredProperty in declaredProperties)
+	{
+		NSString *key = declaredProperty.name;
+		id value = nil;
+		
+		@try
+		{
+			value = [self valueForKey: key];
+		}
+		// If the code cannot successfully get a property an exception will be thrown. Catch any exceptions and log them so that any failed decodings will not crash the application.
+		@catch (NSException *exception)
+		{
+			FDLog(FDLogLevelInfo, @"Could not get %@ on %@ because %@", key, [model class], [exception reason]);
+		}
+		
+		@try
+		{
+			[model setValue: value
+					 forKey: key];
+		}
+		// If the key on the model does not exist an exception will most likely be thrown. Catch any execeptions and log them so that any incorrect decodings will not crash the application.
+		@catch (NSException *exception)
+		{
+			FDLog(FDLogLevelInfo, @"Could not set %@ property on %@ because %@", key, [model class], [exception reason]);
+		}
+	}
+
+	return model;
+}
 
 #pragma mark - Public Methods
 

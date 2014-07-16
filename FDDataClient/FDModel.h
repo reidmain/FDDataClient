@@ -2,11 +2,11 @@
 #import "FDModelStore.h"
 
 #ifndef LOG_UNUSED_REMOTE_KEYS
-    #define LOG_UNUSED_REMOTE_KEYS 0
+    #define LOG_UNUSED_REMOTE_KEYS 1
 #endif
 
 #ifndef LOG_MISSING_EXPECTED_KEYS
-    #define LOG_MISSING_EXPECTED_KEYS 0
+    #define LOG_MISSING_EXPECTED_KEYS 1
 #endif
 
 #ifndef VERBOSE
@@ -23,7 +23,8 @@ typedef void (^FDModelCustomizationBlock)(FDModel *model);
 #pragma mark - Class Interface
 
 @interface FDModel : NSObject<
-	NSCoding>
+	NSCoding,
+	NSCopying>
 
 
 #pragma mark - Properties
