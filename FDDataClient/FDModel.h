@@ -23,7 +23,8 @@ typedef void (^FDModelCustomizationBlock)(FDModel *model);
 #pragma mark - Class Interface
 
 @interface FDModel : NSObject<
-	NSCoding>
+	NSCoding,
+	NSCopying>
 
 
 #pragma mark - Properties
@@ -38,6 +39,18 @@ typedef void (^FDModelCustomizationBlock)(FDModel *model);
 	initBlock: (FDModelInitBlock)initBlock 
 	customizationBlock: (FDModelCustomizationBlock)initializerBlock;
 - (instancetype)initWithIdentifier: (id)identifier;
+
+/**
+ *  Creates a shallow copy of the object. Any properties that reference objects 
+ *	will use the memory semantics defined by that property, strong will own, 
+ *	copy will copy, etc.
+ *
+ *  @param zone Ignored.
+ *
+ *  @return Returns a copy of the object.
+ */
+- (id)copyWithZone: (NSZone *)zone;
+
 
 
 #pragma mark - Static Methods
