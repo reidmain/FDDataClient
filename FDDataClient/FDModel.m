@@ -208,7 +208,7 @@ static NSMutableDictionary *_existingModelsByClass;
 		{
 			value = [self valueForKey: key];
 		}
-		// If the code cannot successfully get a property an exception will be thrown. Catch any exceptions and log them so that any failed decodings will not crash the application.
+		// If the code cannot successfully get a property an exception will be thrown. Catch any exceptions and log them so that any failed property accesses will not crash the application.
 		@catch (NSException *exception)
 		{
 			FDLog(FDLogLevelInfo, @"Could not get %@ on %@ because %@", key, [model class], [exception reason]);
@@ -219,7 +219,7 @@ static NSMutableDictionary *_existingModelsByClass;
 			[model setValue: value
 					 forKey: key];
 		}
-		// If the key on the model does not exist an exception will most likely be thrown. Catch any execeptions and log them so that any incorrect decodings will not crash the application.
+		// If the key on the model does not exist an exception will most likely be thrown. Catch any execeptions and log them so that any incorrect property assignments will not crash the application.
 		@catch (NSException *exception)
 		{
 			FDLog(FDLogLevelInfo, @"Could not set %@ property on %@ because %@", key, [model class], [exception reason]);
