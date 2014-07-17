@@ -193,7 +193,7 @@ static NSMutableDictionary *_existingModelsByClass;
 	return self;
 }
 
-- (id)copyWithZone:(NSZone *)zone
+- (id)copyWithZone: (NSZone *)zone
 {
 	FDModel *model = [[self class] new];
 	
