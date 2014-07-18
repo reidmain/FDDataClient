@@ -217,8 +217,8 @@
 					// Load the object for the remote key path and attempt to transform it to a local model.
 					id remoteObject = [object valueForKeyPath: remoteKeyPath];
 					
-					// If the remote object is null ignore it and move onto the next item. There is no point to deal with a null object because it could only delete data that currently exists.
-					if (FDIsNull(remoteObject) == YES)
+					// If the remote key path does not exist on the object ignore it and move onto the next item. There is no point in dealing with a remote key path that does not exist because it could only delete data that currently exists.
+					if (remoteObject == nil)
 					{
 						return;
 					}
@@ -240,7 +240,7 @@
 							parentRemoteKeypath: remoteKeyPath];
 					}
 					
-					// If the transformed object is nil do not attempt to set it on the model because it could be erasing data that already exists.
+					// If the transformed object is not nil check if there are any common transforms that can be performed on the object before it is set on the property.
 					if (transformedObject != nil)
 					{
 						// Get the property info on the property that is about to be set.
@@ -334,17 +334,17 @@
 						{
 							return;
 						}
-						
-						@try
-						{
-							[model setValue: transformedObject 
-								forKeyPath: localKeyPath];
-						}
-						// If the key path on the local model does not exist an exception will most likely be thrown. Catch this exeception and log it so that any incorrect mappings will not crash the application.
-						@catch (NSException *exception)
-						{
-							FDLog(FDLogLevelInfo, @"Could not set %@ property on %@ because %@", localKeyPath, [model class], [exception reason]);
-						}
+					}
+					
+					@try
+					{
+						[model setValue: transformedObject 
+							forKeyPath: localKeyPath];
+					}
+					// If the key path on the local model does not exist an exception will most likely be thrown. Catch this exeception and log it so that any incorrect mappings will not crash the application.
+					@catch (NSException *exception)
+					{
+						FDLog(FDLogLevelInfo, @"Could not set %@ property on %@ because %@", localKeyPath, [model class], [exception reason]);
 					}
 				}];
 			
