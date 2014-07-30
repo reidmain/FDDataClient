@@ -222,6 +222,11 @@
 					{
 						return;
 					}
+					// If the remote object is NSNull make it nil to prevent the inevitable crash from working with NSNull objects. This will still allow the property being set to be cleared.
+					else if (remoteObject == [NSNull null])
+					{
+						remoteObject = nil;
+					}
 					
 					// If a local transformer has been defined use it instead of attempting to transform the object into local models.
 					id transformedObject = nil;
