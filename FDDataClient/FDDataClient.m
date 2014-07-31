@@ -245,12 +245,12 @@
 							parentRemoteKeypath: remoteKeyPath];
 					}
 					
+					// Get the property info on the property that is about to be set.
+					FDDeclaredProperty *declaredProperty = [modelClass declaredPropertyForKeyPath: localKeyPath];
+					
 					// If the transformed object is not nil check if there are any common transforms that can be performed on the object before it is set on the property.
 					if (transformedObject != nil)
 					{
-						// Get the property info on the property that is about to be set.
-						FDDeclaredProperty *declaredProperty = [modelClass declaredPropertyForKeyPath: localKeyPath];
-						
 						// If the property being set is of type FDModel and the transformed object is a NSString or NSValue it is possible that the string is the unique identifier for the model. Check and see if an instance of model class with that identifier exists.
 						if ([declaredProperty.type isSubclassOfClass: [FDModel class]] == YES 
 							&& ([transformedObject isKindOfClass: [NSString class]] == YES 
@@ -339,6 +339,11 @@
 						{
 							return;
 						}
+					}
+					// If the transformed object is nil and the declared property is a scalar type do not bother trying to set it because it will only result in an exception.
+					else if (declaredProperty.type == nil)
+					{
+						return;
 					}
 					
 					@try
