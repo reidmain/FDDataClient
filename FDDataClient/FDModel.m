@@ -47,7 +47,7 @@ static NSMutableDictionary *_existingModelsByClass;
 	// If an identifier has been passed in check if an instance of the class with the identifier already exists.
 	if (FDIsEmpty(identifier) == NO)
 	{
-		// Because models can be created on any create this code needs to be synchronized on the class being created to ensure that two threads can't create the same object at the same time.
+		// Because models can be created on any thread this code needs to be synchronized on the class being created to ensure that two threads can't create the same object at the same time.
 		@synchronized ([self class])
 		{
 			NSString *modelClassAsString = NSStringFromClass([self class]);
