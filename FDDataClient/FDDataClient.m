@@ -286,6 +286,10 @@
 							}
 							
 							// If the model class is still nil use the declared property type.
+							if (modelClass == nil)
+							{
+								modelClass = declaredProperty.type;
+							}
 							
 							transformedObject = [modelClass modelWithIdentifier: transformedObject];
 						}
