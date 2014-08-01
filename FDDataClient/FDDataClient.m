@@ -293,9 +293,9 @@
 							
 							transformedObject = [modelClass modelWithIdentifier: transformedObject];
 						}
-						// If the property being set is of type FDModel and the remote object is a NSDictionary attempt to transform the dictionary into a instance of the FDModel class.
+						// If the property being set is of type FDModel and the transformed object is still a NSDictionary attempt to transform the dictionary into a instance of the FDModel class.
 						else if ([declaredProperty.type isSubclassOfClass: [FDModel class]] == YES 
-							&& [remoteObject isKindOfClass: [NSDictionary class]] == YES)
+							&& [transformedObject isKindOfClass: [NSDictionary class]] == YES)
 						{
 							transformedObject = [self _transformObjectToLocalModels: transformedObject 
 								fromURL: url 
