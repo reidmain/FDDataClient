@@ -336,6 +336,13 @@
 						{
 							transformedObject = [transformedObject stringValue];
 						}
+						// If the property being set is a NSNumber and the transformed object is a NSString convert the string to a number.
+						else if ([declaredProperty.type isSubclassOfClass: [NSNumber class]] == YES
+							&& [transformedObject isKindOfClass: [NSString class]] == YES)
+						{
+							double value = [transformedObject doubleValue];
+							transformedObject = @(value);
+						}
 						
 						// If the transformed object is not the same type as the property that is being set stop parsing this remote key path.
 						if (declaredProperty.type != nil 
