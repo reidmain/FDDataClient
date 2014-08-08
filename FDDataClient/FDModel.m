@@ -86,7 +86,7 @@ static NSMutableDictionary *_existingModelsByClass;
 				}
 				
 				// Ensure the identifier is set on the model.
-				self.identifier = identifier;
+				_identifier = identifier;
 				
 				// Because the model was just created call the customization block.
 				if (customizationBlock != nil)
@@ -216,8 +216,8 @@ static NSMutableDictionary *_existingModelsByClass;
 		
 		@try
 		{
-			[model setValue: value
-					 forKey: key];
+			[model setValue: value 
+				forKey: key];
 		}
 		// If the key on the model does not exist an exception will most likely be thrown. Catch any execeptions and log them so that any incorrect property assignments will not crash the application.
 		@catch (NSException *exception)
@@ -302,6 +302,62 @@ static NSMutableDictionary *_existingModelsByClass;
 		[coder encodeObject: value 
 			forKey: key];
 	}
+}
+
+
+#pragma mark - Overridden Methods
+
+- (NSUInteger)hash
+{
+	NSString *modelClassAsString = NSStringFromClass([self class]);
+	
+	NSUInteger hash = [modelClassAsString hash] ^ [_identifier hash];
+	
+	return hash;
+}
+
+- (BOOL)isEqual: (id)object
+{
+	BOOL isEqual = NO;
+	
+	if (self == object)
+	{
+		isEqual = YES;
+	}
+	else if ([object isMemberOfClass: [FDModel class]] == YES)
+	{
+		isEqual = YES;
+		
+		// Iterate over each declared property check if they are equal.
+		NSArray *declaredProperties = [[self class] declaredPropertiesForSubclass: [FDModel class]];
+		for (FDDeclaredProperty *declaredProperty in declaredProperties)
+		{
+			NSString *key = declaredProperty.name;
+			id modelValue = nil;
+			id objectValue = nil;
+			
+			@try
+			{
+				modelValue = [self valueForKey: key];
+				objectValue = [objectValue valueForKey: key];
+			}
+			// If the value for a key cannot be retrieved an exception will be thrown. Catch any exceptions and log them so that any failed property accesses will not crash the application.
+			@catch (NSException *exception)
+			{
+				FDLog(FDLogLevelInfo, @"Could not get %@ on %@ because %@", key, [self class], [exception reason]);
+			}
+			
+			if ((modelValue == nil && objectValue == nil) 
+				 || [modelValue isEqual: objectValue] == NO)
+			{
+				isEqual = NO;
+				
+				break;
+			}
+		}
+	}
+	
+	return isEqual;
 }
 
 

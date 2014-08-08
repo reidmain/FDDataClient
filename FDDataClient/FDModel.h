@@ -29,7 +29,7 @@ typedef void (^FDModelCustomizationBlock)(FDModel *model);
 
 #pragma mark - Properties
 
-@property (nonatomic, copy) id identifier;
+@property (nonatomic, readonly) id identifier;
 
 
 #pragma mark - Constructors
