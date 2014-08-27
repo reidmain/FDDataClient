@@ -46,6 +46,8 @@ This allows users to easily see what requests are being made as well as duplicat
 
 /**
 If logCurlCommandsToConsole is set to YES this value is intersected with the headers of the request being made and the resulting headers are added to the curl command logged to the console.
+
+By default the "Authorization" field is the only field that is logged.
 */
 @property (nonatomic, copy) NSArray *headerFieldsToLog;
 
