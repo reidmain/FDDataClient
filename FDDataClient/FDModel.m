@@ -126,7 +126,7 @@ static NSMutableDictionary *_existingModelsByClass;
 - (instancetype)initWithIdentifier: (id)identifier
 {
 	self = [self initWithIdentifier: identifier 
-		initBlock: ^id (id identifier)
+		initBlock: ^FDModel *(id identifier)
 			{
 				// If the model does not exist in memory check the model store.
 				FDModel *model = [_modelStore modelForIdentifier: identifier];
@@ -366,7 +366,7 @@ static NSMutableDictionary *_existingModelsByClass;
 + (void)_validateAndLogRemoteObject: (NSDictionary *)remoteObject 
 	fromURL: (NSURL *)url
 {
-#if (LOG_UNUSED_REMOTE_KEYS || LOG_MISSING_EXPECTED_KEYS)
+#if (LOG_UNUSED_REMOTE_KEYS || LOG_MISSING_EXPECTED_REMOTE_KEYS)
 	
 	static NSMutableDictionary *validatedClasses;
 	if (validatedClasses == nil)
@@ -414,7 +414,7 @@ static NSMutableDictionary *_existingModelsByClass;
 		}
 #endif
 		
-#if LOG_MISSING_EXPECTED_KEYS
+#if LOG_MISSING_EXPECTED_REMOTE_KEYS
 		NSMutableSet *missingKeys = [NSMutableSet setWithSet: expectedKeys];
 		[missingKeys minusSet: remoteKeys];
 		

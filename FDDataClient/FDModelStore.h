@@ -8,13 +8,32 @@
 
 #pragma mark - Class Interface
 
-// NOTE: This is an abstract class.
+/**
+FDModelStore is an abstract class you use to encapasulate the storage and retrieval of FDModel objects. FDArchivedFileModelStore is a library-defined subclass that FDModel uses by default.
+
+@see FDArchivedFileModelStore
+*/
 @interface FDModelStore : NSObject
 
 
 #pragma mark - Instance Methods
 
+/**
+Retrieve a model from the model store with the specified identifier.
+
+@param The identifier of the model being queried.
+
+@return Returns the model if it exists otherwise nil.
+*/
 - (FDModel *)modelForIdentifier: (id)identifier;
+
+/**
+Attempts to save the model to the model store.
+
+@param The model to save to the model store.
+
+@return Returns YES if the model was successfully saved to the model store otherwise NO.
+*/
 - (BOOL)saveModel: (FDModel *)model;
 
 
