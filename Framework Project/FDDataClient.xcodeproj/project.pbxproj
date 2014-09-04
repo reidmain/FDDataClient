@@ -1,0 +1,541 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		270343B118A5B12F00B9C0D4 /* FDDataClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 270343AC18A5B0F500B9C0D4 /* FDDataClient.m */; };
+		270343B218A5B13100B9C0D4 /* FDModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 270343AE18A5B0F500B9C0D4 /* FDModel.m */; };
+		270343BF18A5B27600B9C0D4 /* FDDataClient.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 270343AB18A5B0F500B9C0D4 /* FDDataClient.h */; };
+		270343C018A5B27600B9C0D4 /* FDModel.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 270343AD18A5B0F500B9C0D4 /* FDModel.h */; };
+		2705D31B19463ACF002183D8 /* FDModelStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 2705D31A19463ACF002183D8 /* FDModelStore.m */; };
+		2705D31C19463DF7002183D8 /* FDModelStore.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2705D31919463ACF002183D8 /* FDModelStore.h */; };
+		2705D31F1946400C002183D8 /* FDArchivedFileModelStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 2705D31E1946400C002183D8 /* FDArchivedFileModelStore.m */; };
+		2705D32019464016002183D8 /* FDArchivedFileModelStore.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2705D31D1946400C002183D8 /* FDArchivedFileModelStore.h */; };
+		271317C519B7A0750062E978 /* libFDRequestClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 271317C019B7A0510062E978 /* libFDRequestClient.a */; };
+		275E7D7118A5C3D800D8BB82 /* FDDataClientDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 275E7D7018A5C37B00D8BB82 /* FDDataClientDelegate.h */; };
+		2767347419B7BD35001600F0 /* FDFoundationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2767347119B7BD26001600F0 /* FDFoundationKit.framework */; };
+		2771CCCD19B7AC51008A198A /* FDDataClientDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 275E7D7018A5C37B00D8BB82 /* FDDataClientDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2771CCCE19B7AC51008A198A /* FDDataClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 270343AB18A5B0F500B9C0D4 /* FDDataClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2771CCCF19B7AC51008A198A /* FDDataClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 270343AC18A5B0F500B9C0D4 /* FDDataClient.m */; };
+		2771CCD019B7AC51008A198A /* FDModelStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 2705D31919463ACF002183D8 /* FDModelStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2771CCD119B7AC51008A198A /* FDModelStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 2705D31A19463ACF002183D8 /* FDModelStore.m */; };
+		2771CCD219B7AC51008A198A /* FDArchivedFileModelStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 2705D31D1946400C002183D8 /* FDArchivedFileModelStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2771CCD319B7AC51008A198A /* FDArchivedFileModelStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 2705D31E1946400C002183D8 /* FDArchivedFileModelStore.m */; };
+		2771CCD419B7AC51008A198A /* FDModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 270343AD18A5B0F500B9C0D4 /* FDModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2771CCD519B7AC51008A198A /* FDModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 270343AE18A5B0F500B9C0D4 /* FDModel.m */; };
+		2771CCE219B7B2F5008A198A /* FDRequestClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 271317C219B7A0510062E978 /* FDRequestClient.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		271317BF19B7A0510062E978 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 271317B919B7A0510062E978 /* FDRequestClient.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27AE0F3616AD966A001F5771;
+			remoteInfo = "FDRequestClient iOS";
+		};
+		271317C119B7A0510062E978 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 271317B919B7A0510062E978 /* FDRequestClient.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27F79D8919B7881A00E118DB;
+			remoteInfo = "FDRequestClient OS X";
+		};
+		271317C319B7A0720062E978 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 271317B919B7A0510062E978 /* FDRequestClient.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 27AE0F3516AD966A001F5771;
+			remoteInfo = "FDRequestClient iOS";
+		};
+		2767346E19B7BD26001600F0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2767346919B7BD26001600F0 /* FDFoundationKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2722325F18C26A180051677A;
+			remoteInfo = "FDFoundationKit iOS";
+		};
+		2767347019B7BD26001600F0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2767346919B7BD26001600F0 /* FDFoundationKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27E4982C19B7864800639C30;
+			remoteInfo = "FDFoundationKit OS X";
+		};
+		2767347219B7BD30001600F0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2767346919B7BD26001600F0 /* FDFoundationKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 27E4982B19B7864800639C30;
+			remoteInfo = "FDFoundationKit OS X";
+		};
+		2771CCDE19B7B2DB008A198A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 271317B919B7A0510062E978 /* FDRequestClient.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 27F79D8819B7881A00E118DB;
+			remoteInfo = "FDRequestClient OS X";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		27D82F5118A5B083004A9D05 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				2705D32019464016002183D8 /* FDArchivedFileModelStore.h in CopyFiles */,
+				2705D31C19463DF7002183D8 /* FDModelStore.h in CopyFiles */,
+				275E7D7118A5C3D800D8BB82 /* FDDataClientDelegate.h in CopyFiles */,
+				270343BF18A5B27600B9C0D4 /* FDDataClient.h in CopyFiles */,
+				270343C018A5B27600B9C0D4 /* FDModel.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		270343AB18A5B0F500B9C0D4 /* FDDataClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDDataClient.h; sourceTree = "<group>"; };
+		270343AC18A5B0F500B9C0D4 /* FDDataClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDDataClient.m; sourceTree = "<group>"; };
+		270343AD18A5B0F500B9C0D4 /* FDModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDModel.h; sourceTree = "<group>"; };
+		270343AE18A5B0F500B9C0D4 /* FDModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDModel.m; sourceTree = "<group>"; };
+		2705D31919463ACF002183D8 /* FDModelStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDModelStore.h; sourceTree = "<group>"; };
+		2705D31A19463ACF002183D8 /* FDModelStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDModelStore.m; sourceTree = "<group>"; };
+		2705D31D1946400C002183D8 /* FDArchivedFileModelStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDArchivedFileModelStore.h; sourceTree = "<group>"; };
+		2705D31E1946400C002183D8 /* FDArchivedFileModelStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDArchivedFileModelStore.m; sourceTree = "<group>"; };
+		271317B919B7A0510062E978 /* FDRequestClient.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FDRequestClient.xcodeproj; path = "FDRequestClient/Framework Project/FDRequestClient.xcodeproj"; sourceTree = "<group>"; };
+		275E7D7018A5C37B00D8BB82 /* FDDataClientDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FDDataClientDelegate.h; sourceTree = "<group>"; };
+		2767346919B7BD26001600F0 /* FDFoundationKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FDFoundationKit.xcodeproj; path = "FDRequestClient/Vendors/FDFoundationKit/Framework Project/FDFoundationKit.xcodeproj"; sourceTree = "<group>"; };
+		2771CCA119B7A97B008A198A /* FDDataClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FDDataClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2771CCE419B7B339008A198A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		27D82F5318A5B083004A9D05 /* libFDDataClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFDDataClient.a; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2771CC9D19B7A97B008A198A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2767347419B7BD35001600F0 /* FDFoundationKit.framework in Frameworks */,
+				2771CCE219B7B2F5008A198A /* FDRequestClient.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27D82F5018A5B083004A9D05 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				271317C519B7A0750062E978 /* libFDRequestClient.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		270343AA18A5B0F500B9C0D4 /* FDDataClient */ = {
+			isa = PBXGroup;
+			children = (
+				275E7D7018A5C37B00D8BB82 /* FDDataClientDelegate.h */,
+				270343AB18A5B0F500B9C0D4 /* FDDataClient.h */,
+				270343AC18A5B0F500B9C0D4 /* FDDataClient.m */,
+				2705D31919463ACF002183D8 /* FDModelStore.h */,
+				2705D31A19463ACF002183D8 /* FDModelStore.m */,
+				2705D31D1946400C002183D8 /* FDArchivedFileModelStore.h */,
+				2705D31E1946400C002183D8 /* FDArchivedFileModelStore.m */,
+				270343AD18A5B0F500B9C0D4 /* FDModel.h */,
+				270343AE18A5B0F500B9C0D4 /* FDModel.m */,
+			);
+			name = FDDataClient;
+			path = ../FDDataClient;
+			sourceTree = "<group>";
+		};
+		270343B518A5B21E00B9C0D4 /* Vendors */ = {
+			isa = PBXGroup;
+			children = (
+				2767346919B7BD26001600F0 /* FDFoundationKit.xcodeproj */,
+				271317B919B7A0510062E978 /* FDRequestClient.xcodeproj */,
+			);
+			name = Vendors;
+			path = ../Vendors;
+			sourceTree = "<group>";
+		};
+		271317BA19B7A0510062E978 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				271317C019B7A0510062E978 /* libFDRequestClient.a */,
+				271317C219B7A0510062E978 /* FDRequestClient.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2767346A19B7BD26001600F0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2767346F19B7BD26001600F0 /* libFDFoundationKit.a */,
+				2767347119B7BD26001600F0 /* FDFoundationKit.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2771CCE319B7B339008A198A /* OS X Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2771CCE419B7B339008A198A /* Info.plist */,
+			);
+			path = "OS X Supporting Files";
+			sourceTree = "<group>";
+		};
+		27D82F4A18A5B083004A9D05 = {
+			isa = PBXGroup;
+			children = (
+				27D82F5818A5B083004A9D05 /* FDDataClient Framework */,
+				27D82F5418A5B083004A9D05 /* Products */,
+			);
+			sourceTree = "<group>";
+			usesTabs = 1;
+		};
+		27D82F5418A5B083004A9D05 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				27D82F5318A5B083004A9D05 /* libFDDataClient.a */,
+				2771CCA119B7A97B008A198A /* FDDataClient.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		27D82F5818A5B083004A9D05 /* FDDataClient Framework */ = {
+			isa = PBXGroup;
+			children = (
+				270343AA18A5B0F500B9C0D4 /* FDDataClient */,
+				2771CCE319B7B339008A198A /* OS X Supporting Files */,
+				270343B518A5B21E00B9C0D4 /* Vendors */,
+			);
+			name = "FDDataClient Framework";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		2771CC9E19B7A97B008A198A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2771CCD419B7AC51008A198A /* FDModel.h in Headers */,
+				2771CCD019B7AC51008A198A /* FDModelStore.h in Headers */,
+				2771CCCD19B7AC51008A198A /* FDDataClientDelegate.h in Headers */,
+				2771CCD219B7AC51008A198A /* FDArchivedFileModelStore.h in Headers */,
+				2771CCCE19B7AC51008A198A /* FDDataClient.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		2771CCA019B7A97B008A198A /* FDDataClient Mac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2771CCCB19B7A97B008A198A /* Build configuration list for PBXNativeTarget "FDDataClient Mac" */;
+			buildPhases = (
+				2771CC9C19B7A97B008A198A /* Sources */,
+				2771CC9D19B7A97B008A198A /* Frameworks */,
+				2771CC9E19B7A97B008A198A /* Headers */,
+				2771CC9F19B7A97B008A198A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2767347319B7BD30001600F0 /* PBXTargetDependency */,
+				2771CCDF19B7B2DB008A198A /* PBXTargetDependency */,
+			);
+			name = "FDDataClient Mac";
+			productName = FDDataClient;
+			productReference = 2771CCA119B7A97B008A198A /* FDDataClient.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		27D82F5218A5B083004A9D05 /* FDDataClient iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27D82F7618A5B083004A9D05 /* Build configuration list for PBXNativeTarget "FDDataClient iOS" */;
+			buildPhases = (
+				27D82F4F18A5B083004A9D05 /* Sources */,
+				27D82F5018A5B083004A9D05 /* Frameworks */,
+				27D82F5118A5B083004A9D05 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				271317C419B7A0720062E978 /* PBXTargetDependency */,
+			);
+			name = "FDDataClient iOS";
+			productName = "FDDataClient Static Library";
+			productReference = 27D82F5318A5B083004A9D05 /* libFDDataClient.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		27D82F4B18A5B083004A9D05 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Reid Main";
+			};
+			buildConfigurationList = 27D82F4E18A5B083004A9D05 /* Build configuration list for PBXProject "FDDataClient" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 27D82F4A18A5B083004A9D05;
+			productRefGroup = 27D82F5418A5B083004A9D05 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 2767346A19B7BD26001600F0 /* Products */;
+					ProjectRef = 2767346919B7BD26001600F0 /* FDFoundationKit.xcodeproj */;
+				},
+				{
+					ProductGroup = 271317BA19B7A0510062E978 /* Products */;
+					ProjectRef = 271317B919B7A0510062E978 /* FDRequestClient.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				27D82F5218A5B083004A9D05 /* FDDataClient iOS */,
+				2771CCA019B7A97B008A198A /* FDDataClient Mac */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		271317C019B7A0510062E978 /* libFDRequestClient.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFDRequestClient.a;
+			remoteRef = 271317BF19B7A0510062E978 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		271317C219B7A0510062E978 /* FDRequestClient.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FDRequestClient.framework;
+			remoteRef = 271317C119B7A0510062E978 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2767346F19B7BD26001600F0 /* libFDFoundationKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFDFoundationKit.a;
+			remoteRef = 2767346E19B7BD26001600F0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2767347119B7BD26001600F0 /* FDFoundationKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FDFoundationKit.framework;
+			remoteRef = 2767347019B7BD26001600F0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2771CC9F19B7A97B008A198A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2771CC9C19B7A97B008A198A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2771CCD519B7AC51008A198A /* FDModel.m in Sources */,
+				2771CCCF19B7AC51008A198A /* FDDataClient.m in Sources */,
+				2771CCD119B7AC51008A198A /* FDModelStore.m in Sources */,
+				2771CCD319B7AC51008A198A /* FDArchivedFileModelStore.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27D82F4F18A5B083004A9D05 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				270343B118A5B12F00B9C0D4 /* FDDataClient.m in Sources */,
+				2705D31B19463ACF002183D8 /* FDModelStore.m in Sources */,
+				270343B218A5B13100B9C0D4 /* FDModel.m in Sources */,
+				2705D31F1946400C002183D8 /* FDArchivedFileModelStore.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		271317C419B7A0720062E978 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "FDRequestClient iOS";
+			targetProxy = 271317C319B7A0720062E978 /* PBXContainerItemProxy */;
+		};
+		2767347319B7BD30001600F0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "FDFoundationKit OS X";
+			targetProxy = 2767347219B7BD30001600F0 /* PBXContainerItemProxy */;
+		};
+		2771CCDF19B7B2DB008A198A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "FDRequestClient OS X";
+			targetProxy = 2771CCDE19B7B2DB008A198A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2771CCC619B7A97B008A198A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "OS X Supporting Files/Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		2771CCC719B7A97B008A198A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "OS X Supporting Files/Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		27D82F7418A5B083004A9D05 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = FDDataClient;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		27D82F7518A5B083004A9D05 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = FDDataClient;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		27D82F7718A5B083004A9D05 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		27D82F7818A5B083004A9D05 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2771CCCB19B7A97B008A198A /* Build configuration list for PBXNativeTarget "FDDataClient Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2771CCC619B7A97B008A198A /* Debug */,
+				2771CCC719B7A97B008A198A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27D82F4E18A5B083004A9D05 /* Build configuration list for PBXProject "FDDataClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27D82F7418A5B083004A9D05 /* Debug */,
+				27D82F7518A5B083004A9D05 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27D82F7618A5B083004A9D05 /* Build configuration list for PBXNativeTarget "FDDataClient iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27D82F7718A5B083004A9D05 /* Debug */,
+				27D82F7818A5B083004A9D05 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 27D82F4B18A5B083004A9D05 /* Project object */;
+}
