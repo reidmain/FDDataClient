@@ -64,6 +64,13 @@ Creates or loads a model with the specified identifier.
 + (instancetype)modelWithIdentifier: (id)identifier;
 
 /**
+Creates or loads a model with the specified dictionary.
+
+@param The dictionary the model is being created from.
+*/
++ (instancetype)modelWithDictionary: (NSDictionary *)dictionary;
+
+/**
 Returns an initialized model with the specified identifier.
 
 This is the designated initializer for this class.
@@ -169,8 +176,12 @@ To log unused keys build with LOG_UNUSED_REMOTE_KEYS preprocessor macro.
 @param remoteObject An object to validate against the expected response.
 @param url The url the object was received from.
 */
-+ (void)_validateAndLogRemoteObject: (NSDictionary *)remoteObject 
-	fromURL: (NSURL *)url;
+//+ (void)_validateAndLogRemoteObject: (NSDictionary *)remoteObject 
+//	fromURL: (NSURL *)url;
+
+// TODO: Implement a method that is called before and after a property is about to be set.
+
+// TODO: Implement method that is called after a model has been created.
 
 /**
 Returns an array of keys to ignore when validating the expected response.

@@ -1,5 +1,6 @@
 #import "FDModel.h"
 #import "FDArchivedFileModelStore.h"
+#import "FDModelProvider.h"
 
 
 #pragma mark Class Variables
@@ -36,6 +37,29 @@ static NSMutableDictionary *_existingModelsByClass;
 {
 	FDModel *model = [[self alloc] 
 		initWithIdentifier: identifier];
+	
+	return model;
+}
+
++ (instancetype)modelWithDictionary: (NSDictionary *)dictionary
+{
+	FDModelProvider *modelProvider = [FDModelProvider sharedInstance];
+	FDModel *model = [modelProvider parseObject: dictionary 
+		modelClassBlock: ^Class(NSString *parentKey, id value)
+			{
+				Class modelClass = nil;
+				if (parentKey == nil)
+				{
+					return [self class];
+				}
+				
+				return modelClass;
+			}];
+	
+	if ([model isKindOfClass: [FDModel class]] == NO)
+	{
+		model = nil;
+	}
 	
 	return model;
 }

@@ -1,5 +1,7 @@
 #import <FDRequestClient/FDRequestClient.h>
 #import "FDDataClientDelegate.h"
+#import "FDModel.h"
+#import "FDModelProvider.h"
 
 
 #pragma mark Class Interface
@@ -31,11 +33,6 @@ The object that acts as the delegate of the data client.
 The delegate must adopt the FDDataClientDelegate protocol. The data client maintains only a weak reference to the delegate.
 */
 @property (nonatomic, weak) id<FDDataClientDelegate> delegate;
-
-/**
-The generic data formatter to use whenever the data client is attempting to set an instance of NSString on property whose type is NSDate.
-*/
-@property (nonatomic, strong) NSDateFormatter *dateFormatter;
 
 /**
 When set to YES a curl command will be logged to the console when a request is loaded.
@@ -74,7 +71,7 @@ This method behaves almost exactly like FDRequestClient's loadHTTPRequest:author
 	authorizationBlock: (FDRequestClientTaskAuthorizationBlock)authorizationBlock 
 	progressBlock: (FDRequestClientTaskProgressBlock)progressBlock 
 	dataParserBlock: (FDRequestClientTaskDataParserBlock)dataParserBlock 
-	modelClassBlock: (FDDataClientModelClassBlock)modelClassBlock 
+	modelClassBlock: (FDModelProviderModelClassBlock)modelClassBlock 
 	completionBlock: (FDRequestClientTaskCompletionBlock)completionBlock;
 
 

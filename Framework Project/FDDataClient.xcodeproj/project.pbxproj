@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27011A4319C111430094FE54 /* FDModelProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 27011A4219C111430094FE54 /* FDModelProvider.m */; };
+		27011A4419C119120094FE54 /* FDModelProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 27011A4119C111430094FE54 /* FDModelProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		27011A4519C119170094FE54 /* FDModelProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 27011A4219C111430094FE54 /* FDModelProvider.m */; };
+		27011A4619C119210094FE54 /* FDModelProvider.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 27011A4119C111430094FE54 /* FDModelProvider.h */; };
 		270343B118A5B12F00B9C0D4 /* FDDataClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 270343AC18A5B0F500B9C0D4 /* FDDataClient.m */; };
 		270343B218A5B13100B9C0D4 /* FDModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 270343AE18A5B0F500B9C0D4 /* FDModel.m */; };
 		270343BF18A5B27600B9C0D4 /* FDDataClient.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 270343AB18A5B0F500B9C0D4 /* FDDataClient.h */; };
@@ -89,6 +93,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				27011A4619C119210094FE54 /* FDModelProvider.h in CopyFiles */,
 				2705D32019464016002183D8 /* FDArchivedFileModelStore.h in CopyFiles */,
 				2705D31C19463DF7002183D8 /* FDModelStore.h in CopyFiles */,
 				275E7D7118A5C3D800D8BB82 /* FDDataClientDelegate.h in CopyFiles */,
@@ -100,6 +105,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		27011A4119C111430094FE54 /* FDModelProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDModelProvider.h; sourceTree = "<group>"; };
+		27011A4219C111430094FE54 /* FDModelProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDModelProvider.m; sourceTree = "<group>"; };
 		270343AB18A5B0F500B9C0D4 /* FDDataClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDDataClient.h; sourceTree = "<group>"; };
 		270343AC18A5B0F500B9C0D4 /* FDDataClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDDataClient.m; sourceTree = "<group>"; };
 		270343AD18A5B0F500B9C0D4 /* FDModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDModel.h; sourceTree = "<group>"; };
@@ -143,12 +150,14 @@
 				275E7D7018A5C37B00D8BB82 /* FDDataClientDelegate.h */,
 				270343AB18A5B0F500B9C0D4 /* FDDataClient.h */,
 				270343AC18A5B0F500B9C0D4 /* FDDataClient.m */,
+				270343AD18A5B0F500B9C0D4 /* FDModel.h */,
+				270343AE18A5B0F500B9C0D4 /* FDModel.m */,
+				27011A4119C111430094FE54 /* FDModelProvider.h */,
+				27011A4219C111430094FE54 /* FDModelProvider.m */,
 				2705D31919463ACF002183D8 /* FDModelStore.h */,
 				2705D31A19463ACF002183D8 /* FDModelStore.m */,
 				2705D31D1946400C002183D8 /* FDArchivedFileModelStore.h */,
 				2705D31E1946400C002183D8 /* FDArchivedFileModelStore.m */,
-				270343AD18A5B0F500B9C0D4 /* FDModel.h */,
-				270343AE18A5B0F500B9C0D4 /* FDModel.m */,
 			);
 			name = FDDataClient;
 			path = ../FDDataClient;
@@ -230,6 +239,7 @@
 				2771CCCD19B7AC51008A198A /* FDDataClientDelegate.h in Headers */,
 				2771CCD219B7AC51008A198A /* FDArchivedFileModelStore.h in Headers */,
 				2771CCCE19B7AC51008A198A /* FDDataClient.h in Headers */,
+				27011A4419C119120094FE54 /* FDModelProvider.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,6 +371,7 @@
 				2771CCCF19B7AC51008A198A /* FDDataClient.m in Sources */,
 				2771CCD119B7AC51008A198A /* FDModelStore.m in Sources */,
 				2771CCD319B7AC51008A198A /* FDArchivedFileModelStore.m in Sources */,
+				27011A4519C119170094FE54 /* FDModelProvider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,6 +379,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27011A4319C111430094FE54 /* FDModelProvider.m in Sources */,
 				270343B118A5B12F00B9C0D4 /* FDDataClient.m in Sources */,
 				2705D31B19463ACF002183D8 /* FDModelStore.m in Sources */,
 				270343B218A5B13100B9C0D4 /* FDModel.m in Sources */,

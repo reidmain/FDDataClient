@@ -37,8 +37,10 @@
 			}];
 }
 
-
-#pragma mark - Private Methods
+- (BOOL)applicationShouldTerminateAfterLastWindowClosed: (NSApplication *)sender
+{
+	return YES;
+}
 
 
 @end
