@@ -1,4 +1,5 @@
 #import "AppDelegate.h"
+#import "FDCulture.h"
 
 
 #pragma mark Class Definition
@@ -22,17 +23,32 @@
 	
 	_mainWindow.backgroundColor = [UIColor blackColor];
 	
-	// TODO: Create the root view controller based on what platform the app is running on.
-	UIDevice *currentDevice = [UIDevice currentDevice];
+	// TODO: Create the root view controller for the window.
 	
-	UIUserInterfaceIdiom idiom = currentDevice.userInterfaceIdiom;
+	FDDataClient *dataClient = [FDDataClient new];
 	
-	if (idiom == UIUserInterfaceIdiomPad)
-	{
-	}
-	else
-	{
-	}
+	NSURL *url = [NSURL URLWithString: @"http://api.feedzilla.com/v1/cultures.json"];
+	
+	FDHTTPRequest *httpRequest = [[FDHTTPRequest alloc] 
+		initWithURL: url];
+	
+	[dataClient loadHTTPRequest: httpRequest 
+		authorizationBlock: nil 
+		progressBlock: nil 
+		dataParserBlock: nil 
+		modelClassBlock: ^Class(NSString *parentKey, id value)
+			{
+				if ([value isKindOfClass: [NSDictionary class]] == YES)
+				{
+					return [FDCulture class];
+				}
+				
+				return nil;
+			} 
+		completionBlock: ^(FDURLResponse *urlResponse)
+			{
+				NSLog(@"Finished loading:\n%@", urlResponse.content);
+			}];
 	
 	// Show the main window.
 	[_mainWindow makeKeyAndVisible];
