@@ -168,20 +168,37 @@ Attempts to save the model to the model store.
 #pragma mark - Debug Methods
 
 /**
-Validates a remote object from a URL against the expected response and logs the difference. Useful for identifying missing and unused keys.
+Notifies the model that it is about to begin parsing the specified remote object.
+
+This method will only be called when the DEBUG preprocessor macro is active.
+*/
+- (void)modelWillBeginParsingRemoteObject: (NSDictionary *)remoteObject;
+
+/**
+Notifies the model that it has finished parsing the specified remote object.
+
+This method will only be called when the DEBUG preprocessor macro is active.
+*/
+- (void)modelDidFinishParsingRemoteObject: (NSDictionary *)remoteObject;
+
+/**
+Notifies the model that it is about to begin parsing the specified remote key path.
+
+This method will only be called when the DEBUG preprocessor macro is active.
+*/
+- (void)modelWillBeginParsingRemoteKeyPath: (NSString *)remoteKeyPath;
+
+/**
+Notifies the model that it has finished parsing the specified remote key path.
+
+This method will only be called when the DEBUG preprocessor macro is active.
+
+By default this method validates a remote object against the expected response and logs the difference. Useful for identifying missing and unused keys.
 
 To log missing keys build with LOG_MISSING_EXPECTED_REMOTE_KEYS preprocessor macro.
 To log unused keys build with LOG_UNUSED_REMOTE_KEYS preprocessor macro.
-
-@param remoteObject An object to validate against the expected response.
-@param url The url the object was received from.
 */
-//+ (void)_validateAndLogRemoteObject: (NSDictionary *)remoteObject 
-//	fromURL: (NSURL *)url;
-
-// TODO: Implement a method that is called before and after a property is about to be set.
-
-// TODO: Implement method that is called after a model has been created.
+- (void)modelDidFinishParsingRemoteKeyPath: (NSString *)remoteKeyPath;
 
 /**
 Returns an array of keys to ignore when validating the expected response.

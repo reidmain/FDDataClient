@@ -26,9 +26,6 @@ static FDModelProvider *_sharedInstance;
 @implementation FDModelProvider
 
 
-#pragma mark - Properties
-
-
 #pragma mark - Constructors
 
 + (void)initialize
@@ -73,16 +70,13 @@ static FDModelProvider *_sharedInstance;
 - (id)parseObject: (id)object 
 	modelClassBlock: (FDModelProviderModelClassBlock)modelClassBlock;
 {
-	id bah = [self _parseObject: object 
+	id parsedObject = [self _parseObject: object 
 		parentModelClass: nil 
 		parentRemoteKeypath: nil 
 		modelClassBlock: modelClassBlock];
 	
-	return bah;
+	return parsedObject;
 }
-
-
-#pragma mark - Overridden Methods
 
 
 #pragma mark - Private Methods
@@ -184,12 +178,20 @@ static FDModelProvider *_sharedInstance;
 			// Load the instance of the model for the identifier if it exists. Otherwise create a blank instance of the model.
 			FDModel *model = [modelClass modelWithIdentifier: identifier];
 			
+#if DEBUG
+			[model modelWillBeginParsingRemoteObject: object];
+#endif
+			
 			// Get the mapping of remote key paths to local key paths for the model class.
 			NSDictionary *keyPathsMapping = [modelClass remoteKeyPathsToLocalKeyPaths];
 			
 			// Iterate over the mapping and attempt to parse the objects for each remote key path into their respective local model key paths.
 			[keyPathsMapping enumerateKeysAndObjectsUsingBlock: ^(id remoteKeyPath, id localKeyPath, BOOL *stop)
 				{
+				#if DEBUG
+					[model modelWillBeginParsingRemoteKeyPath: remoteKeyPath];
+				#endif
+					
 					// Load the object for the remote key path and attempt to transform it to a local model.
 					id remoteObject = [object valueForKeyPath: remoteKeyPath];
 					
@@ -325,6 +327,10 @@ static FDModelProvider *_sharedInstance;
 						return;
 					}
 					
+				#if DEBUG
+					[model modelDidFinishParsingRemoteKeyPath: remoteKeyPath];
+				#endif
+					
 					@try
 					{
 						[model setValue: transformedObject 
@@ -338,9 +344,7 @@ static FDModelProvider *_sharedInstance;
 				}];
 			
 #if DEBUG
-// TODO: fix
-//			[modelClass _validateAndLogRemoteObject: object 
-//				fromURL: url];
+			[model modelDidFinishParsingRemoteObject: object];
 #endif
 
 			return model;
