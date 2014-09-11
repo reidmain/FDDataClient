@@ -84,6 +84,20 @@
 			remoteGlobalIDString = 27F79D8819B7881A00E118DB;
 			remoteInfo = "FDRequestClient OS X";
 		};
+		27D0964119C255530052B91D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2767346919B7BD26001600F0 /* FDFoundationKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2751AD8F19BFA84E00844BC5;
+			remoteInfo = "FDFoundationKit iOS";
+		};
+		27D0964419C255530052B91D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 271317B919B7A0510062E978 /* FDRequestClient.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2762725819BFB36600625CA4;
+			remoteInfo = "FDRequestClient iOS";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -176,8 +190,9 @@
 		271317BA19B7A0510062E978 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				271317C019B7A0510062E978 /* libFDRequestClient.a */,
+				27D0964519C255530052B91D /* FDRequestClient.framework */,
 				271317C219B7A0510062E978 /* FDRequestClient.framework */,
+				271317C019B7A0510062E978 /* libFDRequestClient.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -185,8 +200,9 @@
 		2767346A19B7BD26001600F0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2767346F19B7BD26001600F0 /* libFDFoundationKit.a */,
+				27D0964219C255530052B91D /* FDFoundationKit.framework */,
 				2767347119B7BD26001600F0 /* FDFoundationKit.framework */,
+				2767346F19B7BD26001600F0 /* libFDFoundationKit.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -266,9 +282,9 @@
 			productReference = 2771CCA119B7A97B008A198A /* FDDataClient.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		27D82F5218A5B083004A9D05 /* FDDataClient iOS */ = {
+		27D82F5218A5B083004A9D05 /* FDDataClient iOS (Static) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 27D82F7618A5B083004A9D05 /* Build configuration list for PBXNativeTarget "FDDataClient iOS" */;
+			buildConfigurationList = 27D82F7618A5B083004A9D05 /* Build configuration list for PBXNativeTarget "FDDataClient iOS (Static)" */;
 			buildPhases = (
 				27D82F4F18A5B083004A9D05 /* Sources */,
 				27D82F5018A5B083004A9D05 /* Frameworks */,
@@ -279,7 +295,7 @@
 			dependencies = (
 				271317C419B7A0720062E978 /* PBXTargetDependency */,
 			);
-			name = "FDDataClient iOS";
+			name = "FDDataClient iOS (Static)";
 			productName = "FDDataClient Static Library";
 			productReference = 27D82F5318A5B083004A9D05 /* libFDDataClient.a */;
 			productType = "com.apple.product-type.library.static";
@@ -315,8 +331,8 @@
 			);
 			projectRoot = "";
 			targets = (
-				27D82F5218A5B083004A9D05 /* FDDataClient iOS */,
 				2771CCA019B7A97B008A198A /* FDDataClient Mac */,
+				27D82F5218A5B083004A9D05 /* FDDataClient iOS (Static) */,
 			);
 		};
 /* End PBXProject section */
@@ -348,6 +364,20 @@
 			fileType = wrapper.framework;
 			path = FDFoundationKit.framework;
 			remoteRef = 2767347019B7BD26001600F0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		27D0964219C255530052B91D /* FDFoundationKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FDFoundationKit.framework;
+			remoteRef = 27D0964119C255530052B91D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		27D0964519C255530052B91D /* FDRequestClient.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FDRequestClient.framework;
+			remoteRef = 27D0964419C255530052B91D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -538,7 +568,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		27D82F7618A5B083004A9D05 /* Build configuration list for PBXNativeTarget "FDDataClient iOS" */ = {
+		27D82F7618A5B083004A9D05 /* Build configuration list for PBXNativeTarget "FDDataClient iOS (Static)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				27D82F7718A5B083004A9D05 /* Debug */,
