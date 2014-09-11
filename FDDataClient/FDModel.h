@@ -1,5 +1,5 @@
-#import <FDFoundationKit/FDFoundationKit.h>
 #import "FDModelStore.h"
+
 
 #ifndef LOG_MISSING_EXPECTED_REMOTE_KEYS
     #define LOG_MISSING_EXPECTED_REMOTE_KEYS 0
@@ -66,6 +66,8 @@ Creates or loads a model with the specified identifier.
 /**
 Creates or loads a model with the specified dictionary.
 
+This method uses the shared FDModelProvider instance to attempt to transform the dictionary into an instance of the class this method is called on.
+
 @param The dictionary the model is being created from.
 */
 + (instancetype)modelWithDictionary: (NSDictionary *)dictionary;
@@ -110,7 +112,6 @@ Creates a shallow copy of the object. Any properties that reference objects will
 - (id)copyWithZone: (NSZone *)zone;
 
 
-
 #pragma mark - Static Methods
 
 /**
@@ -150,6 +151,8 @@ The method behaves almost identically to FDDataClientModelClassBlock whereas the
 /**
 Sets the model store that will be used to back all FDModels.
 
+By default FDModel uses FDArchivedFileModelStore.
+
 @see FDModelStore
 */
 + (void)setModelStore: (FDModelStore *)modelStore;
@@ -166,6 +169,10 @@ Attempts to save the model to the model store.
 
 
 #pragma mark - Debug Methods
+
+/// -----------
+/// @name Debug
+/// -----------
 
 /**
 Notifies the model that it is about to begin parsing the specified remote object.

@@ -1,10 +1,8 @@
 #import "FDModelProvider.h"
+#import <FDFoundationKit/FDFoundationKit.h>
 
 
-#pragma mark Constants
-
-
-#pragma mark - Class Extension
+#pragma mark Class Extension
 
 @interface FDModelProvider ()
 

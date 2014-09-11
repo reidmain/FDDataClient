@@ -1,6 +1,7 @@
 #import "FDModel.h"
-#import "FDArchivedFileModelStore.h"
 #import "FDModelProvider.h"
+#import "FDArchivedFileModelStore.h"
+#import <FDFoundationKit/FDFoundationKit.h>
 
 
 #pragma mark Class Variables

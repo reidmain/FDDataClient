@@ -12,12 +12,12 @@ FDDataClient is a wrapper class around FDRequestClient which encapsulates the pr
 When an HTTP request is being processed there are three methods that can be used to determine what an object should be parsed into:
 
 1. Through a delegate method
-FDDataClient implements a delegate that is asked what class an object should be converted into. This delegate is called on all requests made by the data client.
+FDDataClient implements a delegate that is asked what FDModel subclass an object should be converted into. This delegate is called on all requests made by the data client.
 
 2. Through a block specific to a given request
-When making an HTTP request with the data client you can pass it a modelClassBlock that will be queried before the delegate. If the modelClassBlock returns a class the delegate will not be called. This allows users to override the delegate and provide information that is unique only to a specific request.
+When making an HTTP request with the data client you can pass in a modelClassBlock that will be queried before the delegate. If the modelClassBlock returns a class the delegate will not be called. This allows users to override the delegate and provide information that is scoped to a specific request.
 
-For example, in general if you encounter an NSDictionary with a key called "type" that has a value of "bah" that may be an indicator that you should create an instance of FDBah. However for a specific request encountering this same key-value pair you may want to create an instance of FDSubclassedBah.
+For example, in general if you encounter an NSDictionary with a key called "type" that has a value of "bah" that may be an indicator that you should create an instance of the FDBah class. However for a specific request encountering this same key-value pair may indicate you shoud create an instance of FDSubclassedBah.
 
 3. Through a method at a FDModel subclass level
 When a FDModel subclass is being parsed you have ability to specify what class an object should be converted to through the modelClassForDictionary:withRemoteKeyPath: method.

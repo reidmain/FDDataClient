@@ -9,7 +9,9 @@
 #pragma mark - Class Interface
 
 /**
-FDModelStore is an abstract class you use to encapasulate the storage and retrieval of FDModel objects. FDArchivedFileModelStore is a library-defined subclass that FDModel uses by default.
+FDModelStore is an abstract class you use to encapasulate the storage and retrieval of FDModel objects.
+
+FDArchivedFileModelStore is a library-defined concrete subclass of FDModelStore.
 
 @see FDArchivedFileModelStore
 */
@@ -19,7 +21,7 @@ FDModelStore is an abstract class you use to encapasulate the storage and retrie
 #pragma mark - Instance Methods
 
 /**
-Retrieve a model from the model store with the specified identifier.
+Attempts to retrieve a model from the model store with the specified identifier.
 
 @param The identifier of the model being queried.
 
