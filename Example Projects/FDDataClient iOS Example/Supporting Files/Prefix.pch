@@ -7,5 +7,5 @@
 	@import QuartzCore;
 	@import UIKit;
 	
-	#import <FDDataClient/FDDataClient.h>
+	@import FDDataClient;
 #endif
