@@ -387,7 +387,7 @@
 		27D82F4B18A5B083004A9D05 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Reid Main";
 				TargetAttributes = {
 					27D0964A19C255F50052B91D = {
@@ -732,6 +732,7 @@
 				27D0965D19C255F50052B91D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		27D82F4E18A5B083004A9D05 /* Build configuration list for PBXProject "FDDataClient" */ = {
 			isa = XCConfigurationList;
