@@ -26,20 +26,19 @@
 	// TODO: Create the root view controller for the window.
 	
 	// Example use of the FDDataClient.
-	FDDataClient *dataClient = [FDDataClient new];
-	
 	NSURL *url = [NSURL URLWithString: @"http://api.feedzilla.com/v1/cultures.json"];
 	
-	FDHTTPRequest *httpRequest = [[FDHTTPRequest alloc] 
-		initWithURL: url];
+	FDHTTPRequest *httpRequest = [FDHTTPRequest requestWithURL: url];
 	
+	FDDataClient *dataClient = [FDDataClient new];
 	[dataClient loadHTTPRequest: httpRequest 
 		authorizationBlock: nil 
 		progressBlock: nil 
 		dataParserBlock: nil 
 		modelClassBlock: ^Class(NSString *parentKey, id value)
 			{
-				if ([value isKindOfClass: [NSDictionary class]] == YES)
+				if (parentKey == nil 
+					 && [value isKindOfClass: [NSDictionary class]] == YES)
 				{
 					return [FDCulture class];
 				}
