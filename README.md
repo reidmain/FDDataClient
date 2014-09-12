@@ -1,15 +1,15 @@
 # Overview
-Anyone who has worked with RESTful services in Objective-C knows the pain that is writing parsing code. FDDataClient tries to alleviate this pain by leveraging the networking layer of FDRequestClient and the model layer of FDModel. Combining these two projects users can implement their entire model layer using FDModel and when a HTTP request is being processed by FDRequestClient there are three hooks that can be used to determine what an object from the response should be parsed into:
+Anyone who has worked with RESTful services in Objective-C knows the pain that is writing parsing code. FDDataClient tries to alleviate this pain by leveraging the networking layer of [FDRequestClient](https://github.com/reidmain/FDRequestClient) and the model layer of [FDModel](https://github.com/reidmain/FDModel). By combining these two projects FDDataClient allows users to easily implement their parsing logic using FDModel and when a HTTP request is being processed FDDataClient provides three hooks that can be used to determine what instance of FDModel an object from the response should be parsed into:
 
-1. Through a delegate method
+**1. Through a delegate method**  
 FDDataClient implements a delegate that is asked what FDModel subclass an object should be converted into. This delegate is called on all requests made by the data client.
 
-2. Through a block specific to a given request
+**2. Through a block specific to a given request**  
 When making an HTTP request with the data client you can pass in a modelClassBlock that will be queried before the delegate. If the modelClassBlock returns a class the delegate will not be called. This allows users to override the delegate and provide information that is scoped to a specific request.
 
 For example, in general if you encounter an NSDictionary with a key called "type" that has a value of "bah" that may be an indicator that you should create an instance of the FDBah class. However for a specific request encountering this same key-value pair may indicate you shoud create an instance of FDSubclassedBah.
 
-3. Through a method at a FDModel subclass level
+**3. Through a method at a FDModel subclass level**  
 When a FDModel subclass is being parsed you have ability to specify what class an object should be converted to through the modelClassForDictionary:withRemoteKeyPath: method.
 
 Using these three methods any web service's data layer can be implemented easily and efficiently and remove all the boilplate code and headaches caused by writing your own parsing layer.
