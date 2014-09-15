@@ -1,3 +1,6 @@
 [submodule "Vendors/FDRequestClient"]
 	path = Vendors/FDRequestClient
 	url = git@github.com:reidmain/FDRequestClient.git
+[submodule "Vendors/FDModel"]
+	path = Vendors/FDModel
+	url = git@github.com:reidmain/FDModel.git

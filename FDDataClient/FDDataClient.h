@@ -1,9 +1,6 @@
+#import <FDModel/FDModel.h>
 #import <FDRequestClient/FDRequestClient.h>
 #import "FDDataClientDelegate.h"
-#import "FDModel.h"
-#import "FDModelProvider.h"
-#import "FDModelStore.h"
-#import "FDArchivedFileModelStore.h"
 
 
 #pragma mark Class Interface

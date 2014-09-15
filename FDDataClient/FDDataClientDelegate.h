@@ -1,6 +1,3 @@
-#import "FDModel.h"
-
-
 #pragma mark Protocol
 
 /**
