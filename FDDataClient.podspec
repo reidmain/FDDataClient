@@ -16,5 +16,6 @@ Pod::Spec.new do |s|
   s.private_header_files = "FDDataClient/**/*+Private.h"
   s.framework = "Foundation"
   s.requires_arc = true
+  s.dependency "FDModel"
   s.dependency "FDRequestClient"
 end
