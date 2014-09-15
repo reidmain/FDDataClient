@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
 
   s.name = "FDDataClient"
-  s.version = "0.2.0"
-  s.summary = "1414 Degrees' REST API to local models layer."
+  s.version = "1.0.0"
+  s.summary = "Networking and model layer to simplify the conversion from JSON to Objective-C."
   s.license = { :type => "MIT", :file => "LICENSE.md" }
 
   s.homepage = "https://github.com/reidmain/FDDataClient"
