@@ -29,7 +29,26 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       codeCoverageEnabled = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2737F4251BA3ED4800A4BF30"
+               BuildableName = "FDDataClient OS X Tests.xctest"
+               BlueprintName = "FDDataClient OS X Tests"
+               ReferencedContainer = "container:FDDataClient.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "2771CCA019B7A97B008A198A"
+            BuildableName = "FDDataClient.framework"
+            BlueprintName = "FDDataClient OS X"
+            ReferencedContainer = "container:FDDataClient.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>

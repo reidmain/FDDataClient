@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2737F3F51BA3EC6F00A4BF30"
-               BuildableName = "FDDataClient watchOS.framework"
+               BuildableName = "FDDataClient.framework"
                BlueprintName = "FDDataClient watchOS"
                ReferencedContainer = "container:FDDataClient.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2737F3F51BA3EC6F00A4BF30"
-            BuildableName = "FDDataClient watchOS.framework"
+            BuildableName = "FDDataClient.framework"
             BlueprintName = "FDDataClient watchOS"
             ReferencedContainer = "container:FDDataClient.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2737F3F51BA3EC6F00A4BF30"
-            BuildableName = "FDDataClient watchOS.framework"
+            BuildableName = "FDDataClient.framework"
             BlueprintName = "FDDataClient watchOS"
             ReferencedContainer = "container:FDDataClient.xcodeproj">
          </BuildableReference>
