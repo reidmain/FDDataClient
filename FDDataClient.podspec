@@ -1,5 +1,4 @@
 Pod::Spec.new do |s|
-
   s.name = "FDDataClient"
   s.version = "1.0.1"
   s.summary = "Networking and model layer to simplify the conversion from JSON to Objective-C."
@@ -9,8 +8,8 @@ Pod::Spec.new do |s|
   s.author = "Reid Main"
   s.social_media_url = "http://twitter.com/reidmain"
 
-  s.ios.deployment_target = "7.0"
-  s.osx.deployment_target = "10.9"
+  s.ios.deployment_target = "9.0"
+  s.osx.deployment_target = "10.11"
   s.source = { :git => "https://github.com/reidmain/FDDataClient.git", :tag => s.version }
   s.source_files = "FDDataClient/**/*.{h,m}"
   #s.private_header_files = "FDDataClient/**/*+Private.h"

@@ -1,5 +1,8 @@
-#import <FDModel/FDModel.h>
-#import <FDRequestClient/FDRequestClient.h>
+@import Foundation;
+
+@import FDModel;
+@import FDRequestClient;
+
 #import "FDDataClientDelegate.h"
 
 

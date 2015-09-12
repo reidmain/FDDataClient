@@ -1,9 +1,12 @@
-#pragma mark Protocol
+#pragma mark - Protocol
 
 /**
 The FDDataClientDelegate protocol defines a method that allows you to specify what subclass of FDModel an object should be parsed into without any knowledge about what request is taking place.
 */
-@protocol FDDataClientDelegate<NSObject>
+@protocol FDDataClientDelegate
+<
+	NSObject
+>
 
 
 #pragma mark - Required Methods
